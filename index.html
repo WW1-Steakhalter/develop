@@ -6,6 +6,7 @@
     <title>WW1 Rechner</title>
     <link rel="stylesheet" href="CSS/style.css">
     <script src="javaScripts/menuController.js"></script>
+    <script src="javaScripts/tableCalculation.js"></script>
 
 </head>
 <body>
@@ -13,11 +14,12 @@
 <div class="sidebar">
     <h2>Menü</h2>
     <ul>
+
         <li><a href="#" onclick="loadPage('HTML/startPage.html')">Start</a></li>
         <li><a href="#" onclick="loadPage('HTML/mainPage.html')">Hauptrechnung</a></li>
-        <li><a href="#">Projekte</a></li>
-        <li><a href="#">Vorlagen</a></li>
-        <li><a href="#">Einstellungen</a></li>
+        <li><a href="#" onClick="loadPage('HTML/projectPage.html')">Projekte</a></li>
+        <li><a href="#" onClick="loadPage('HTML/templatePage.html')">Vorlagen</a></li>
+        <li><a href="#" onclick="loadPage('HTML/settingsPage.html')">Einstellungen</a></li>
     </ul>
 </div>
 
