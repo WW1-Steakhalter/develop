@@ -15,6 +15,7 @@
             document.getElementById("main-content").innerHTML = "<p>Seite konnte nicht geladen werden.</p>";
             console.error(error);
         });
+
 }
 
 

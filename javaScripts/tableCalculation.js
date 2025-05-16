@@ -13,4 +13,5 @@ function fetchSalaryStepTable () {
         });
     })
         .catch(error => console.log("Fehler beim laden der Entgeldstufe", error));
+
 }
