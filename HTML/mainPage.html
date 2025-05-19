@@ -74,19 +74,45 @@
     <h3>Jahressonderzahlung in €</h3>
     <div class="input-box">
         <div class="inputfield">
-            <label for="out6">2024 bis 10/2024<br>anteilig</label><input id="out6" name="text-out6" type="text">
+            <label for="shares01">2024 bis 10/2024</label>
+            <input id="shares01" name="anteil" type="search" list="sharesList01">
+            <datalist id="sharesList01">
+                <option>anteilig</option>
+                <option>nein</option>
+            </datalist>
         </div>
         <div class="inputfield">
-            <label for="out7">2024 ab 11/2024<br>anteilig</label><input id="out7" name="text-out7" type="text">
+            <label for="shares02">2024 ab 11/2024<br>anteilig</label>
+            <input id="shares02" name="anteil" type="search" list="sharesList02">
+            <datalist id="sharesList02">
+                <option>anteilig</option>
+                <option>nein</option>
+            </datalist>
         </div>
         <div class="inputfield">
-            <label for="out8">2025<br>anteilig</label><input id="out8" name="text-out8" type="text">
+            <label for="shares03">2025</label>
+            <input id="shares03" name="anteil" type="search" list="sharesList03">
+            <datalist id="sharesList03">
+                <option>anteilig</option>
+                <option>nein</option>
+                <option>vollständig</option>
+            </datalist>
         </div>
         <div class="inputfield">
-            <label for="out9">2026<br>vollständig</label><input id="out9" name="text-out9" type="text">
+            <label for="shares04">2026</label><input id="shares04" name="anteil" type="search" list="sharesList04">
+            <datalist id="sharesList04">
+                <option>anteilig</option>
+                <option>nein</option>
+                <option>vollständig</option>
+            </datalist>
         </div>
         <div class="inputfield">
-            <label for="out10">2027<br>vollständig</label><input id="out10" name="text-out10" type="text">
+            <label for="shares05">2027<br>vollständig</label><input id="shares05" name="anteil" type="search" list="sharesList05">
+            <datalist id="sharesList05">
+                <option>anteilig</option>
+                <option>nein</option>
+                <option>vollständig</option>
+            </datalist>
         </div>
     </div>
 </div>
@@ -123,5 +149,8 @@
 </div>
 
 <br><br>
-<button type="submit">Rechnen</button>
-
+<div class="section-box">
+    <button type="submit">Rechnen</button>
+    <button type="reset">Löschen</button>
+    <button type="button">zu Projekt hinzufügen</button>
+</div>
