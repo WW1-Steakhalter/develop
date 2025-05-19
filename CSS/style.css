@@ -85,6 +85,7 @@ body, html {
 .input-box label {
     flex: 1 1 100%;
     font-weight: bold;
+    margin-bottom: 0.5rem;
 }
 
 .input-box input {
@@ -93,6 +94,59 @@ body, html {
     padding: 0.5rem;
     box-sizing: border-box;
 }
+
+.section-box-projectView {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    border: 1px solid #ccc;
+    background-color: #2c2c2c;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.project-field {
+    display: flex;
+    flex-direction: column; /* Label oben, Input unten */
+    flex: 1 1 calc(100% / 6 - 1rem);
+    min-width: 150px;
+}
+
+.project-field label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #fff; /* optional für dark background */
+}
+
+.project-field input {
+    padding: 0.5rem;
+    box-sizing: border-box;
+}
+
+.project-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.project-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #3c3c3c;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.project-list li button {
+    margin-left: 0.5rem;
+}
+
 
 table {
     width: 100%;

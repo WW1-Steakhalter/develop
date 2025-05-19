@@ -1,3 +1,7 @@
+const matrix = [
+    ["E1°1", ]
+];
+
 function fetchSalaryStepTable () {
     fetch('entgeldstufen.json')
     .then(response => response.json())
@@ -13,5 +17,11 @@ function fetchSalaryStepTable () {
         });
     })
         .catch(error => console.log("Fehler beim laden der Entgeldstufe", error));
+
+}
+
+
+function calculateWithIncludedAgShares (){
+
 
 }
