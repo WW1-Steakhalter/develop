@@ -10,6 +10,10 @@
         if (url === "HTML/mainPage.html") {
             fetchSalaryStepTable('entgeldstufen.json', 'Optionen');
         }
+
+        if(document.getElementById("workingType")) {
+            selectedEmployeeType();
+        }
         })
         .catch(error => {
             document.getElementById("main-content").innerHTML = "<p>Seite konnte nicht geladen werden.</p>";

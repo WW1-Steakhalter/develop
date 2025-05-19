@@ -76,6 +76,13 @@ body, html {
     gap: 1rem;
 }
 
+.input-box-employeeInputs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
 .inputfield {
     flex: 1 1 200px;
     display: flex;
