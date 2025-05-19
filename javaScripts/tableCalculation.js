@@ -1,6 +1,3 @@
-const matrix = [
-    ["E1°1", ]
-];
 
 function fetchSalaryStepTable () {
     fetch('entgeldstufen.json')
@@ -20,6 +17,17 @@ function fetchSalaryStepTable () {
 
 }
 
+function selectedEmployeeType (){
+    document.getElementById("workingType").addEventListener("change", function(){
+        const selectedValue =  this.value;
+
+        if(selectedValue === "SHK/WHK"){
+           loadPage("HTML/shkMainPage.html");
+        }else if(selectedValue === "Mitarbeiter"){
+            loadPage("HTML/mainPage.html");
+        }
+    });
+}
 
 function calculateWithIncludedAgShares (){
 
