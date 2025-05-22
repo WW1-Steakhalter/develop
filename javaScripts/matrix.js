@@ -137,6 +137,29 @@ const matrix = [
     
 ];
 
+
+//var Entgeldtyp = document.getElementById('options');
+
+
+function searchEntgeld(entgeldtyp){
+    for (searchcount = 0; searchcount < matrix.length; searchcount++){
+
+        if (matrix[searchcount][0] === entgeldtyp){
+
+            let matrixwert = matrix[searchcount][1];
+            console.log(matrixwert);
+            
+            return matrixwert;
+
+        }
+    }
+
+}
+searchEntgeld("E9a°1");
+
+
+
+
 //Referenzierung
 console.log(matrix[0]); // ["E15Ü°1", 6122.63436]
 console.log(matrix[0][0]); // "E15Ü°1"
@@ -245,3 +268,8 @@ if(Spalte == "JSZ2027"){
     console.log(`${name}: ${value}`);
 });
 }
+
+
+
+
+
