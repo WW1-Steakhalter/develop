@@ -35,7 +35,7 @@ function calculateWithIncludedAgShares (){
 }
 
 function submitEmployeeInputsToDb (){
-    const data = new formData();
+    const data = new FormData();
 
     // Persönliche Angaben
     data.append("name", document.getElementById("name")?.value || "");
@@ -58,17 +58,26 @@ function submitEmployeeInputsToDb (){
     data.append("brutto_2027", document.getElementById("out5")?.value || "");
 
     // Jahressonderzahlungen
-    data.append("js_bis_10_2024", document.getElementById("shares01")?.value || "");
-    data.append("js_ab_11_2024", document.getElementById("shares02") ?.value || "");
-    data.append("js_2025", document.getElementById("shares03")?.value || "");
-    data.append("js_2026", document.getElementById("shares04")?.value || "");
-    data.append("js_2027", document.getElementById("shares05")?.value || "");
+
+    data.append("jsz_bis_10_2024", document.getElementById("sharesOut01")?.value || "");
+    data.append("jsz_ab_11_2024", document.getElementById("sharesOut02") ?.value || "");
+    data.append("jsz_2025", document.getElementById("sharesOut03")?.value || "");
+    data.append("jsz_2026", document.getElementById("sharesOut04")?.value || "");
+    data.append("jsz_2027", document.getElementById("sharesList05")?.value || "");
+
+
+    //Jahressumme
+    data.append("js_bis_10_2024", document.getElementById("out11")?.value || "");
+    data.append("js_ab_11_2024", document.getElementById("out12") ?.value || "");
+    data.append("js_2025", document.getElementById("out13")?.value || "");
+    data.append("js_2026", document.getElementById("out14")?.value || "");
+    data.append("js_2027", document.getElementById("out15")?.value || "");
 
     // Gesamtsumme
     data.append("gesamtsumme", document.getElementById("gesamtsumme")?.value || "");
 
     // Anfrage senden
-    fetch("speichern.php", {
+    fetch("https://ww1-steakhalter-dev.kesug.com/PHP/saveEmployeeInputs.php", {
         method: "POST",
         body: data
     })

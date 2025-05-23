@@ -2,7 +2,7 @@
 
 $host = "sql306.infinityfree.com";
 $user = "if0_39043228";
-$pass = "DEIN_PASSWORT";
+$pass = "sF94uEqmEKO8bn";
 $dbname = "if0_39043228_developdb";
 
 $name = getVal('name');
@@ -19,6 +19,11 @@ $brutto11 = getVal('brutto_ab_11/2024');
 $brutto25 = getVal('brutto_2025');
 $brutto26 = getVal('brutto_2026');
 $brutto27 = getVal('brutto_2027');
+$jsz10 = getVal('jsz_bis_10/2024');
+$jsz11 = getVal('jsz_ab_11/2024');
+$jsz25 = getVal('jsz_2025');
+$jsz26 = getVal('jsz_2026');
+$jsz27 = getVal('jsz_2027');
 $js10 = getVal('js_bis_10/2024');
 $js11 = getVal('js_ab_11/2024');
 $js25 = getVal('js_2025');
@@ -42,22 +47,25 @@ $sql = "INSERT INTO mitarbeiter (
     jahr_2024_bis_10, `2024_ab_11_2024`, `2025`, `2026`, `2027`,
     wochenstunden,
     `brutto_bis_10_2024`, `brutto_ab_11_2024`, brutto_2025, brutto_2026, brutto_2027,
+    `jsz_bis_10_2024`, `jsz_ab_11_2024`, jsz_2025, jsz_2026, jsz_2027,
     `js_bis_10_2024`, `js_ab_11_2024`, js_2025, js_2026, js_2027,
     gesamtsumme
-) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 
 $stmt = $connectionToDb->prepare($sql);
 $stmt->bind_param(
-    "sssdddddddddddddddd",
+    "sssddddddddddddddddddddd",
     $name, $mitarbeiter_id, $entgeltgruppe,
     $j2024a, $j2024b, $j2025, $j2026, $j2027,
     $wochenstunden,
     $brutto10, $brutto11, $brutto25, $brutto26, $brutto27,
+    $jsz10, $jsz11, $jsz25, $jsz26, $jsz27,
     $js10, $js11, $js25, $js26, $js27,
     $gesamt
 );
 
+$stmt-> execute();
 $stmt->close();
 $connectionToDb->close();
 
