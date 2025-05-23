@@ -7,15 +7,16 @@
     <option>SHK/WHK</option>
     <option>Mitarbeiter</option>
 </datalist>
-
+<form method="post" action="saveEmployeeInputs.php">
 <div class="section-box">
     <h3>Angaben zum Mitarbeiter</h3>
+
     <div class="input-box-employeeInputs">
         <div class="inputfield">
             <label for="name">Name</label><input id="name" name="text3" type="text">
         </div>
         <div class="inputfield">
-            <label for="3">Mitarbeiter-ID</label><input id="3" name="text3" type="text">
+            <label for="0">Mitarbeiter-ID</label><input id="0" name="text3" type="text">
         </div>
     </div>
     <h3>Eingaben</h3>
@@ -25,18 +26,6 @@
             <input id="options" name="q" type="search" list="Optionen">
 
             <datalist id="Optionen"></datalist>
-        </div>
-        <div class="inputfield">
-            <label for="StufenQuery">Wähle eine Stufe</label>
-            <input id="StufenQuery" name="q" type="search" list="Stufen">
-            <datalist id="Stufen">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-            </datalist>
         </div>
         <div class="inputfield">
             <label for="1">2024 bis 10/2024</label><input id="1" name="text1" type="text">
@@ -58,7 +47,7 @@
             <label for="6">Wochenstunden im Projekt</label><input id="6" name="text6" type="text">
         </div>
     </div>
-</div>
+    </div>
 
 <div class="section-box">
     <h3>Brutto Inkl. AG-Anteile in €</h3>
@@ -96,14 +85,16 @@
                 <option>anteilig</option>
                 <option>nein</option>
             </datalist>
+            <input id="sharesOut01" name="anteil" type="search">
         </div>
         <div class="inputfield">
-            <label for="shares02">2024 ab 11/2024<br>anteilig</label>
+            <label for="shares02">2024 ab 11/2024</label>
             <input id="shares02" name="anteil" type="search" list="sharesList02">
             <datalist id="sharesList02">
                 <option>anteilig</option>
                 <option>nein</option>
             </datalist>
+            <input id="sharesOut02" name="anteil" type="search">
         </div>
         <div class="inputfield">
             <label for="shares03">2025</label>
@@ -113,6 +104,7 @@
                 <option>nein</option>
                 <option>vollständig</option>
             </datalist>
+            <input id="sharesOut03" name="anteil" type="search">
         </div>
         <div class="inputfield">
             <label for="shares04">2026</label><input id="shares04" name="anteil" type="search" list="sharesList04">
@@ -121,14 +113,16 @@
                 <option>nein</option>
                 <option>vollständig</option>
             </datalist>
+            <input id="sharesOut04" name="anteil" type="search">
         </div>
         <div class="inputfield">
-            <label for="shares05">2027<br>vollständig</label><input id="shares05" name="anteil" type="search" list="sharesList05">
+            <label for="shares05">2027</label><input id="shares05" name="anteil" type="search" list="sharesList05">
             <datalist id="sharesList05">
                 <option>anteilig</option>
                 <option>nein</option>
                 <option>vollständig</option>
             </datalist>
+            <input id="sharesOut05" name="anteil" type="search">
         </div>
     </div>
 </div>
@@ -154,6 +148,7 @@
     </div>
 </div>
 
+
 <div class="section-box">
     <h3>Gesamt</h3>
     <div class="input-box">
@@ -168,5 +163,7 @@
 <div class="section-box">
     <button type="submit">Rechnen</button>
     <button type="reset">Löschen</button>
+    <button type="button" onclick="submitEmployeeInputsToDb()">Mitarbeiter speichern</button>
     <button type="button">zu Projekt hinzufügen</button>
 </div>
+</form>
