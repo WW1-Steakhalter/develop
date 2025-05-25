@@ -1,31 +1,42 @@
 <?php
+echo "Version 1.1";
+
+header("Cache-Control: no-cache, must-revalidate");
+header("Expires: 0");
 
 $host = "sql306.infinityfree.com";
 $user = "if0_39043228";
 $pass = "sF94uEqmEKO8bn";
 $dbname = "if0_39043228_developdb";
 
+
+function getVal($key)
+{
+    return isset($_POST[$key]) && $_POST[$key] != "" ? $_POST[$key] : null;
+}
+
+
 $name = getVal('name');
 $mitarbeiter_id = getVal('mitarbeiter_id');
 $entgeltgruppe = getVal('entgeltgruppe');
-$j2024a = getVal('jahr_2024_bis10');
-$j2024b = getVal('2024_ab_11/2024');
+$j2024a = getVal('jahr_2024_bis_10');
+$j2024b = getVal('2024_ab_11_2024');
 $j2025 = getVal('2025');
 $j2026 = getVal('2026');
 $j2027 = getVal('2027');
 $wochenstunden = getVal('wochenstunden');
-$brutto10 = getVal('brutto_bis_10/2024');
-$brutto11 = getVal('brutto_ab_11/2024');
+$brutto10 = getVal('brutto_bis_10_2024');
+$brutto11 = getVal('brutto_ab_11_2024');
 $brutto25 = getVal('brutto_2025');
 $brutto26 = getVal('brutto_2026');
 $brutto27 = getVal('brutto_2027');
-$jsz10 = getVal('jsz_bis_10/2024');
-$jsz11 = getVal('jsz_ab_11/2024');
+$jsz10 = getVal('jsz_bis_10_2024');
+$jsz11 = getVal('jsz_ab_11_2024');
 $jsz25 = getVal('jsz_2025');
 $jsz26 = getVal('jsz_2026');
 $jsz27 = getVal('jsz_2027');
-$js10 = getVal('js_bis_10/2024');
-$js11 = getVal('js_ab_11/2024');
+$js10 = getVal('js_bis_10_2024');
+$js11 = getVal('js_ab_11_2024');
 $js25 = getVal('js_2025');
 $js26 = getVal('js_2026');
 $js27 = getVal('js_2027');
@@ -35,11 +46,6 @@ $gesamt = getVal('gesamtsumme');
 $connectionToDb = new mysqli($host, $user, $pass, $dbname);
 if ($connectionToDb->connect_error) {
     die("Connection failed: " . $connectionToDb->connect_error);
-}
-
-function getVal($key)
-{
-    return isset($_POST[$key]) && $_POST[$key] != "" ? $_POST[$key] : null;
 }
 
 $sql = "INSERT INTO mitarbeiter (

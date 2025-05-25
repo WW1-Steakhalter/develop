@@ -77,7 +77,7 @@ function submitEmployeeInputsToDb (){
     data.append("gesamtsumme", document.getElementById("gesamtsumme")?.value || "");
 
     // Anfrage senden
-    fetch("https://ww1-steakhalter-dev.kesug.com/PHP/saveEmployeeInputs.php", {
+    fetch("PHP/saveEmployeeInputs.php", {
         method: "POST",
         body: data
     })
