@@ -10,10 +10,11 @@ function fetchSalaryStepTable () {
                 const option = document.createElement('option');
                 option.value = gruppe + "°" + stufe;
                 datalist.appendChild(option);
+
             });
         });
     })
-        .catch(error => console.log("Fehler beim laden der Entgeldstufe", error));
+        .catch(error => console.log("Fehler beim Laden der Entgeltstufe", error));
 
 }
 
@@ -37,10 +38,10 @@ function calculateWithIncludedAgShares (){
 function submitEmployeeInputsToDb (){
     const data = new FormData();
 
-    // Persönliche Angaben
+    const entgeltgruppeWert = document.getElementById("entgeltgruppe")?.value || "";// Persönliche Angaben
     data.append("name", document.getElementById("name")?.value || "");
     data.append("mitarbeiter_id", document.getElementById("mitarbeiter_id")?.value || "");
-    data.append("entgeltgruppe", document.getElementById("options")?.value || "");
+    data.append("entgeltgruppe", document.getElementById("entgeltgruppe")?.value || "");
 
     // Eingaben: Jahre + Wochenstunden
     data.append("2024_bis_10_2024", document.getElementById("2024_bis_10_2024")?.value || "");
