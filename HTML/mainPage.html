@@ -7,81 +7,70 @@
     <option>SHK/WHK</option>
     <option>Mitarbeiter</option>
 </datalist>
-
+<form method="post" >
 <div class="section-box">
     <h3>Angaben zum Mitarbeiter</h3>
+
     <div class="input-box-employeeInputs">
         <div class="inputfield">
-            <label for="name">Name</label><input id="name" name="text3" type="text">
+            <label for="name">Name</label><input id="name" name="name" type="text">
         </div>
         <div class="inputfield">
-            <label for="3">Mitarbeiter-ID</label><input id="3" name="text3" type="text">
+            <label for="mitarbeiter_id">Mitarbeiter-ID</label><input id="mitarbeiter_id" name="mitarbeiter_id" type="text">
         </div>
     </div>
     <h3>Eingaben</h3>
     <div class="input-box">
         <div class="inputfield">
-            <label for="options">Wähle eine Entgeltgruppe</label>
-            <input id="options" name="q" type="search" list="Optionen">
+            <label for="entgeltgruppe">Wähle eine Entgeltgruppe</label>
+            <input id="entgeltgruppe" name="entgeltgruppe" type="search" list="Optionen">
 
             <datalist id="Optionen"></datalist>
         </div>
         <div class="inputfield">
-            <label for="StufenQuery">Wähle eine Stufe</label>
-            <input id="StufenQuery" name="q" type="search" list="Stufen">
-            <datalist id="Stufen">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-            </datalist>
+            <label for="2024_bis_10_2024">2024 bis 10/2024</label><input id="2024_bis_10_2024" name="2024_bis_10_2024" type="text">
         </div>
         <div class="inputfield">
-            <label for="1">2024 bis 10/2024</label><input id="1" name="text1" type="text">
+            <label for="2024_ab_11_2024">2024 ab 11/2024</label>
+            <input id="2024_ab_11_2024" name="2024_ab_11_2024" type="text">
         </div>
         <div class="inputfield">
-            <label for="2">2024 ab 11/2024</label>
-            <input id="2" name="text2" type="text">
+            <label for="2025">2025</label><input id="2025" name="2025" type="text">
         </div>
         <div class="inputfield">
-            <label for="3">2025</label><input id="3" name="text3" type="text">
+            <label for="2026">2026</label><input id="2026" name="2026" type="text">
         </div>
         <div class="inputfield">
-            <label for="4">2026</label><input id="4" name="text4" type="text">
+            <label for="2027">2027</label><input id="2027" name="2027" type="text">
         </div>
         <div class="inputfield">
-            <label for="5">2027</label><input id="5" name="text5" type="text">
-        </div>
-        <div class="inputfield">
-            <label for="6">Wochenstunden im Projekt</label><input id="6" name="text6" type="text">
+            <label for="wochenstunden">Wochenstunden im Projekt</label><input id="wochenstunden" name="wochenstunden" type="text">
         </div>
     </div>
-</div>
+    </div>
 
 <div class="section-box">
     <h3>Brutto Inkl. AG-Anteile in €</h3>
     <div class="input-box">
         <div class="inputfield">
-            <label for="out1">2024 bis 10/2024</label>
-            <input id="out1" name="text-out1" type="text">
+            <label for="brutto_bis_10_2024">2024 bis 10/2024</label>
+            <input id="brutto_bis_10_2024" name="brutto_bis_10_2024" type="text">
         </div>
         <div class="inputfield">
-            <label for="out2">2024 ab 11/2024</label>
-            <input id="out2" name="text-out2" type="text">
+            <label for="brutto_ab_11_2024">2024 ab 11/2024</label>
+            <input id="brutto_ab_11_2024" name="brutto_ab_11_2024" type="text">
         </div>
         <div class="inputfield">
-            <label for="out3">2025</label>
-            <input id="out3" name="text-out3" type="text">
+            <label for="brutto_2025">2025</label>
+            <input id="brutto_2025" name="brutto_2025" type="text">
         </div>
         <div class="inputfield">
-            <label for="out4">2026</label>
-            <input id="out4" name="text-out4" type="text">
+            <label for="brutto_2026">2026</label>
+            <input id="brutto_2026" name="brutto_2026" type="text">
         </div>
         <div class="inputfield">
-            <label for="out5">2027</label>
-            <input id="out5" name="text-out5" type="text">
+            <label for="brutto_2027">2027</label>
+            <input id="brutto_2027" name="brutto_2027" type="text">
         </div>
     </div>
 </div>
@@ -90,45 +79,50 @@
     <h3>Jahressonderzahlung in €</h3>
     <div class="input-box">
         <div class="inputfield">
-            <label for="shares01">2024 bis 10/2024</label>
-            <input id="shares01" name="anteil" type="search" list="sharesList01">
+            <label for="jsz_bis_10_2024_select">2024 bis 10/2024</label>
+            <input id="jsz_bis_10_2024_select" name="jsz_bis_10_2024_select" type="search" list="sharesList01">
             <datalist id="sharesList01">
                 <option>anteilig</option>
                 <option>nein</option>
             </datalist>
+            <input id="jsz_2024_bis_10_2024" name="jsz_2024_bis_10_2024" type="search">
         </div>
         <div class="inputfield">
-            <label for="shares02">2024 ab 11/2024<br>anteilig</label>
-            <input id="shares02" name="anteil" type="search" list="sharesList02">
+            <label for="jsz_ab_11_2024_select">2024 ab 11/2024</label>
+            <input id="jsz_ab_11_2024_select" name="jsz_ab_11_2024_select" type="search" list="sharesList02">
             <datalist id="sharesList02">
                 <option>anteilig</option>
                 <option>nein</option>
             </datalist>
+            <input id="jsz_2024_ab_11_2024" name="jsz_2024_ab_11_2024" type="search">
         </div>
         <div class="inputfield">
-            <label for="shares03">2025</label>
-            <input id="shares03" name="anteil" type="search" list="sharesList03">
+            <label for="jsz_2025_select">2025</label>
+            <input id="jsz_2025_select" name="jsz_2025_select" type="search" list="sharesList03">
             <datalist id="sharesList03">
                 <option>anteilig</option>
                 <option>nein</option>
                 <option>vollständig</option>
             </datalist>
+            <input id="jsz_2025" name="jsz_2025" type="search">
         </div>
         <div class="inputfield">
-            <label for="shares04">2026</label><input id="shares04" name="anteil" type="search" list="sharesList04">
+            <label for="jsz_2026_select">2026</label><input id="jsz_2026_select" name="jsz_2026_select" type="search" list="sharesList04">
             <datalist id="sharesList04">
                 <option>anteilig</option>
                 <option>nein</option>
                 <option>vollständig</option>
             </datalist>
+            <input id="jsz_2026" name="jsz_2026" type="search">
         </div>
         <div class="inputfield">
-            <label for="shares05">2027<br>vollständig</label><input id="shares05" name="anteil" type="search" list="sharesList05">
+            <label for="jsz_2027_select">2027</label><input id="jsz_2027_select" name="jsz_2027_select" type="search" list="sharesList05">
             <datalist id="sharesList05">
                 <option>anteilig</option>
                 <option>nein</option>
                 <option>vollständig</option>
             </datalist>
+            <input id="jsz_2027" name="jsz_2027" type="search">
         </div>
     </div>
 </div>
@@ -137,29 +131,30 @@
     <h3>Jahressumme</h3>
     <div class="input-box">
         <div class="inputfield">
-            <label for="out11">2024 bis 10/2024</label><input id="out11" name="text-out11" type="text">
+            <label for="js_bis_10_2024">2024 bis 10/2024</label><input id="js_bis_10_2024" name="js_bis_10_2024" type="text">
         </div>
         <div class="inputfield">
-            <label for="out12">2024 ab 11/2024</label><input id="out12" name="text-out12" type="text">
+            <label for="js_ab_11_2024">2024 ab 11/2024</label><input id="js_ab_11_2024" name="js_ab_11_2024" type="text">
         </div>
         <div class="inputfield">
-            <label for="out13">2025</label><input id="out13" name="text-out13" type="text">
+            <label for="js_2025">2025</label><input id="js_2025" name="js_2025" type="text">
         </div>
         <div class="inputfield">
-            <label for="out14">2026</label><input id="out14" name="text-out14" type="text">
+            <label for="js_2026">2026</label><input id="js_2026" name="js_2026" type="text">
         </div>
         <div class="inputfield">
-            <label for="out15">2027</label><input id="out15" name="text-out15" type="text">
+            <label for="js_2027">2027</label><input id="js_2027" name="js_2027" type="text">
         </div>
     </div>
 </div>
+
 
 <div class="section-box">
     <h3>Gesamt</h3>
     <div class="input-box">
         <div class="inputfield">
-            <label for="out16">2025</label>
-            <input id="out16" name="text-out16" type="text">
+            <label for="gesamtsumme">2025</label>
+            <input id="gesamtsumme" name="gesamtsumme" type="text">
         </div>
     </div>
 </div>
@@ -168,5 +163,7 @@
 <div class="section-box">
     <button type="submit">Rechnen</button>
     <button type="reset">Löschen</button>
+    <button type="button" onclick="submitEmployeeInputsToDb()">Mitarbeiter speichern</button>
     <button type="button">zu Projekt hinzufügen</button>
 </div>
+</form>
