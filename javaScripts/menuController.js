@@ -9,6 +9,9 @@
 
         if (url === "HTML/mainPage.html") {
             fetchSalaryStepTable('entgeldstufen.json', 'Optionen');
+            if (typeof afterMainPageLoad === 'function') {
+                    afterMainPageLoad();
+                }
         }
 
         if(document.getElementById("workingType")) {
