@@ -166,16 +166,6 @@ function searchEntgeld(entgeldtyp){
 searchEntgeld("E1°6");
 
 function OutputBrutto(){
-    document.getElementById("brutto_bis_10_2024").value = searchEntgeld(entgeltyp);
-    document.getElementById("brutto_ab_11_2024").value = searchEntgeld(OutputBrutto2024_ab_11_2024());
-    document.getElementById("brutto_2025").value = searchEntgeld();
-    document.getElementById("brutto_2026").value = searchEntgeld("E15Ü°1"); 
-    document.getElementById("brutto_2027").value = searchEntgeld("E15Ü°1"); 
-}
-
-
-
-function afterMainPageLoad() {
     document.getElementById("brutto_bis_10_2024").value = OutputBrutto2024_bis_10_2024();
     document.getElementById("brutto_ab_11_2024").value = OutputBrutto2024_ab_11_2024();
     document.getElementById("brutto_2025").value = OutputBrutto2025();
@@ -183,8 +173,22 @@ function afterMainPageLoad() {
     document.getElementById("brutto_2027").value = OutputBrutto2027();
 }
 
+function OutputSonderzahlung(){
+    document.getElementById("jsz_2024_bis_10_2024").value = OutputBrutto2024_bis_10_2024() * 0.3253;
+    document.getElementById("jsz_2024_ab_11_2024").value = OutputBrutto2024_ab_11_2024() * 0.3253;
+    document.getElementById("jsz_2025").value = OutputBrutto2025() * 0.3253;
+    document.getElementById("jsz_2026").value = OutputBrutto2026() * 0.3253;
+    document.getElementById("jsz_2027").value = OutputBrutto2027() * 0.3253;
+}
 
 
+
+function afterMainPageLoad() {
+    OutputBrutto()
+    document.getElementById("jsz_2024_bis_10_2024").value = Jahressonderzahlungen10_2024();
+}
+
+//Brutto-Berechnungen für 2024 bis 2027
 function OutputBrutto2024_bis_10_2024(){
     let value = searchEntgeld(entgeltyp);
     if (value !== 0){
@@ -192,7 +196,6 @@ function OutputBrutto2024_bis_10_2024(){
     }
     return value;
 }    
-
 function OutputBrutto2024_ab_11_2024(){
     let value = searchEntgeld(entgeltyp);
     if (value !== 0){
@@ -200,7 +203,6 @@ function OutputBrutto2024_ab_11_2024(){
     }
     return value;
 }
-
 function OutputBrutto2025(){
     let value = searchEntgeld(entgeltyp);
     if (value !== 0){
@@ -222,6 +224,41 @@ function OutputBrutto2027(){
     }
     return value;
 }
+function getMatrixValue(key, colIndex = 6) {
+    // colIndex = 6, weil Spalte 7 in Excel, aber 0-basiert in JS
+    const row = matrix.find(r => r[0] === key);
+    return row ? row[colIndex] : 0;
+}
+
+// Beispielwerte:
+const N12 = "anteilig"; // "nein", "vollständig" oder "anteilig"
+const H13 = 30; // Wochenstunden
+const C13 = 8;  // anteilige Monate
+
+function Jahressonderzahlungen10_2024() {
+    let result = 0;
+    let value = (searchEntgeld(entgeltyp) * 1.24) * 0.3253;
+    if (N12 === "nein") {
+        result = 0;
+    } 
+    else if (N12 === "vollständig") {
+        result = value * (H13 / 40);
+    } 
+    else if (N12 === "anteilig") {
+        result = (value / 12) * C13 * (H13 / 40);
+    }
+
+    return result;  
+}
+
+
+// Beispiel
+
+
+
+
+
+
 
 
 
