@@ -165,6 +165,7 @@ function searchEntgeld(entgeldtyp){
 }
 searchEntgeld("E1°6");
 
+
 function OutputBrutto(){
     document.getElementById("brutto_bis_10_2024").value = OutputBrutto2024_bis_10_2024();
     document.getElementById("brutto_ab_11_2024").value = OutputBrutto2024_ab_11_2024();
@@ -172,20 +173,32 @@ function OutputBrutto(){
     document.getElementById("brutto_2026").value = OutputBrutto2026();
     document.getElementById("brutto_2027").value = OutputBrutto2027();
 }
-
-function OutputSonderzahlung(){
-    document.getElementById("jsz_2024_bis_10_2024").value = OutputBrutto2024_bis_10_2024() * 0.3253;
-    document.getElementById("jsz_2024_ab_11_2024").value = OutputBrutto2024_ab_11_2024() * 0.3253;
-    document.getElementById("jsz_2025").value = OutputBrutto2025() * 0.3253;
-    document.getElementById("jsz_2026").value = OutputBrutto2026() * 0.3253;
-    document.getElementById("jsz_2027").value = OutputBrutto2027() * 0.3253;
+function OutputJSZ(){
+    document.getElementById("jsz_2024_bis_10_2024").value = Jahressonderzahlungen10_2024();
+    document.getElementById("jsz_2024_ab_11_2024").value = Jahressonderzahlungen11_2024();
+    document.getElementById("jsz_2025").value = Jahressonderzahlungen2025();
+    document.getElementById("jsz_2026").value = Jahressonderzahlungen2026();
+    document.getElementById("jsz_2027").value = Jahressonderzahlungen2027();
 }
 
+function OutputJahressumme(){
+    document.getElementById("js_bis_10_2024").value = Jahressumme_bis_10_2024(OutputBrutto2024_bis_10_2024(), Jahressonderzahlungen10_2024());
+    document.getElementById("js_ab_11_2024").value = Jahressumme_ab_11_2024(OutputBrutto2024_ab_11_2024(), Jahressonderzahlungen11_2024());
+    document.getElementById("js_2025").value = Jahressumme2025(OutputBrutto2025(), Jahressonderzahlungen2025());
+    document.getElementById("js_2026").value = Jahressumme2026(OutputBrutto2026(), Jahressonderzahlungen2026());
+    document.getElementById("js_2027").value = Jahressumme2027(OutputBrutto2027(), Jahressonderzahlungen2027());
+}
 
+function OutputGesamtSumme(){
+    document.getElementById("gesamtsumme").value = GesamtSumme();
+}
 
+// Event-Listener für den Seitenaufruf
 function afterMainPageLoad() {
-    OutputBrutto()
-    document.getElementById("jsz_2024_bis_10_2024").value = Jahressonderzahlungen10_2024();
+    OutputBrutto();
+    OutputJSZ();
+    OutputJahressumme();
+    OutputGesamtSumme();
 }
 
 //Brutto-Berechnungen für 2024 bis 2027
@@ -231,9 +244,13 @@ function getMatrixValue(key, colIndex = 6) {
 }
 
 // Beispielwerte:
-const N12 = "anteilig"; // "nein", "vollständig" oder "anteilig"
+const N12 = "anteilig"; // "nein", "vollständig" oder "anteilig" 
+const C13 = 8; // anteilige Monate
+const D13 = 2;
+const E13 = 8;
+const F13 = 8;
+const G13 = 8;
 const H13 = 30; // Wochenstunden
-const C13 = 8;  // anteilige Monate
 
 function Jahressonderzahlungen10_2024() {
     let result = 0;
@@ -252,9 +269,118 @@ function Jahressonderzahlungen10_2024() {
 }
 
 
-// Beispiel
+//Funktionen für JSZ Berechnungen
+function Jahressonderzahlungen11_2024() {
+    let result = 0;
+    let value = ((searchEntgeld(entgeltyp) + 200) * 1.24) * 0.3253;
+    if (N12 === "nein") {
+        result = 0;
+    } 
+    else if (N12 === "vollständig") {
+        result = value * (H13 / 40);
+    } 
+    else if (N12 === "anteilig") {
+        result = (value / 12) * D13 * (H13 / 40);
+    }
+    return result;  
+}
+function Jahressonderzahlungen2025() {
+    let result = 0;
+    let value = (((searchEntgeld(entgeltyp) + 200) * 1.055) * 1.24) * 0.3253;
+    if (N12 === "nein") {
+        result = 0;
+    } 
+    else if (N12 === "vollständig") {
+        result = value * (H13 / 40);
+    } 
+    else if (N12 === "anteilig") {
+        result = (value / 12) * E13 * (H13 / 40);
+    }
+    return result;  
+}
+function Jahressonderzahlungen2026() {
+    let result = 0;
+    let value = ((((searchEntgeld(entgeltyp) + 200) * 1.055) * 1.24) * 1.03) * 0.3253;
+    if (N12 === "nein") {
+        result = 0;
+    } 
+    else if (N12 === "vollständig") {
+        result = value * (H13 / 40);
+    } 
+    else if (N12 === "anteilig") {
+        result = (value / 12) * F13 * (H13 / 40);
+    }
+
+    return result;  
+}
+function Jahressonderzahlungen2027() {
+    let result = 0;
+    let value = (((((searchEntgeld(entgeltyp) + 200) * 1.055) * 1.24) * 1.03) * 1.03) * 0.3253;
+    if (N12 === "nein") {
+        result = 0;
+    } 
+    else if (N12 === "vollständig") {
+        result = value * (H13 / 40);
+    } 
+    else if (N12 === "anteilig") {
+        result = (value / 12) * G13 * (H13 / 40);
+    }
+
+    return result;  
+}
 
 
+// Übergabeparameter H13, I13 (Brutto10_2024AGA), C13, N13 (JSZ10_24)
+function Jahressumme_bis_10_2024(Brutto10_2024AGA, JSZ10_24) {
+    let summe = ((H13 / 40) * Brutto10_2024AGA) * C13;
+    if (H13 > 0 && C13 > 0) {
+        summe += JSZ10_24;
+    }
+    return summe;
+}
+//Excel Referenz: J13 = Brutto11_2024AGA, O13 = JSZ11_24
+function Jahressumme_ab_11_2024(Brutto11_2024AGA, JSZ11_24) {
+    let summe = ((H13 / 40) * Brutto11_2024AGA) * D13;
+    if (H13 > 0 && D13 > 0) {
+        summe += JSZ11_24;
+    }
+    return summe;
+}
+//Excel Referenz: K13 = Brutto2025AGA, P13 = JSZ2025
+function Jahressumme2025(Brutto2025AGA, JSZ2025) {
+    let summe = ((H13 / 40) * Brutto2025AGA) * E13;
+    if (H13 > 0 && E13 > 0) {
+        summe += JSZ2025;
+    }
+    return summe;
+}
+//Excel Referenz: L13 = Brutto2026AGA, Q13 = JSZ2026
+function Jahressumme2026(Brutto2026AGA, JSZ2026) {
+    let summe = ((H13 / 40) * Brutto2026AGA) * F13;
+    if (H13 > 0 && F13 > 0) {
+        summe += JSZ2026;
+    }
+    return summe;
+}
+//Excel Referenz: M13 = Brutto2027AGA, R13 = JSZ2027
+function Jahressumme2027(Brutto2027AGA, JSZ2027) {
+    let summe = ((H13 / 40) * Brutto2027AGA) * G13;
+    if (H13 > 0 && G13 > 0) {
+        summe += JSZ2027;
+    }
+    return summe;
+}
+
+function GesamtSumme(){
+    let summe = 0;
+    summe += Jahressumme_bis_10_2024(OutputBrutto2024_bis_10_2024(), Jahressonderzahlungen10_2024());
+    summe += Jahressumme_ab_11_2024(OutputBrutto2024_ab_11_2024(), Jahressonderzahlungen11_2024());
+    summe += Jahressumme2025(OutputBrutto2025(), Jahressonderzahlungen2025());
+    summe += Jahressumme2026(OutputBrutto2026(), Jahressonderzahlungen2026());
+    summe += Jahressumme2027(OutputBrutto2027(), Jahressonderzahlungen2027());
+    
+    return summe;
+}
 
 
 
