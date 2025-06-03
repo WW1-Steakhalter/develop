@@ -8,7 +8,8 @@ function fetchSalaryStepTable () {
         data.gruppen.forEach(gruppe => {
             data.stufen.forEach(stufe => {
                 const option = document.createElement('option');
-                option.value = gruppe + "°" + stufe;
+                option.value = gruppe.replace(/\s/g, "") + "°" + stufe;
+                //option.value = gruppe + "°" + stufe;
                 datalist.appendChild(option);
 
             });

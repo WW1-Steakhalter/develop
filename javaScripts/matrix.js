@@ -137,16 +137,43 @@ const matrix = [
     
 ];
 
+let entgeltyp, H13, C13, D13, E13, F13, G13, N12_bis_10_2024, N12_ab_11_2024, N12_2025, N12_2026, N12_2027;
 
+// Getter
 
-
-function getEntgeldtyp() {
-    const entgeldtyp = document.getElementById('options').value;    
+function rechnen() {
+    alert("Die Berechnung wird durchgeführt. Bitte warten Sie einen Moment.");
+    userInputGetter();
+    OutputBrutto();
+    OutputJSZ();
+    OutputJahressumme();
+    OutputGesamtSumme();
 }
 
 
+function userInputGetter() {
+    entgeltyp = document.getElementById('entgeltgruppe').value;
+    H13 = parseFloat(document.getElementById('wochenstunden').value) || 0;
+    C13 = parseFloat(document.getElementById('2024_bis_10_2024').value) || 0;
+    D13 = parseFloat(document.getElementById('2024_ab_11_2024').value) || 0;
+    E13 = parseFloat(document.getElementById('2025').value) || 0;
+    F13 = parseFloat(document.getElementById('2026').value) || 0;
+    G13 = parseFloat(document.getElementById('2027').value) || 0;
+    N12_bis_10_2024 = document.getElementById('jsz_bis_10_2024_select').value;
+    N12_ab_11_2024 = document.getElementById('jsz_ab_11_2024_select').value;
+    N12_2025 = document.getElementById('jsz_2025_select').value;
+    N12_2026 = document.getElementById('jsz_2026_select').value;
+    N12_2027 = document.getElementById('jsz_2027_select').value;
+    console.log("Entgeltgruppe gewählt:", entgeltyp);
+}
+
+function getEntgeldtyp() {
+    const entgeldtyp = document.getElementById('entgeltgruppe').value;  
+    
+    return entgeldtyp;
+}
 //Beispielwerte
-var entgeltyp = "E15Ü°1";
+//var entgeltyp = "E15Ü°1";
 // --> muss noch ersetzt werden mit der Funktion "getEntgeldtyp()"
 
 function searchEntgeld(entgeldtyp){
@@ -163,7 +190,7 @@ function searchEntgeld(entgeldtyp){
     }
 
 }
-searchEntgeld("E1°6");
+//searchEntgeld("E1°6");
 
 
 function OutputBrutto(){
@@ -172,6 +199,7 @@ function OutputBrutto(){
     document.getElementById("brutto_2025").value = OutputBrutto2025();
     document.getElementById("brutto_2026").value = OutputBrutto2026();
     document.getElementById("brutto_2027").value = OutputBrutto2027();
+    console.log("Bruttowerte aktualisiert.");
 }
 function OutputJSZ(){
     document.getElementById("jsz_2024_bis_10_2024").value = Jahressonderzahlungen10_2024();
@@ -194,12 +222,12 @@ function OutputGesamtSumme(){
 }
 
 // Event-Listener für den Seitenaufruf
-function afterMainPageLoad() {
+/*function afterMainPageLoad() {
     OutputBrutto();
     OutputJSZ();
     OutputJahressumme();
     OutputGesamtSumme();
-}
+}*/
 
 //Brutto-Berechnungen für 2024 bis 2027
 function OutputBrutto2024_bis_10_2024(){
@@ -244,24 +272,24 @@ function getMatrixValue(key, colIndex = 6) {
 }
 
 // Beispielwerte:
-const N12 = "anteilig"; // "nein", "vollständig" oder "anteilig" 
-const C13 = 8; // anteilige Monate
-const D13 = 2;
-const E13 = 8;
-const F13 = 8;
-const G13 = 8;
-const H13 = 30; // Wochenstunden
+//const N12_bis_10_2024 = "anteilig"; // "nein", "vollständig" oder "anteilig" 
+//const C13 = 8; // anteilige Monate
+//const D13 = 2;
+//const E13 = 8;
+//const F13 = 8;
+//const G13 = 8;
+//const H13 = 30; // Wochenstunden
 
 function Jahressonderzahlungen10_2024() {
     let result = 0;
     let value = (searchEntgeld(entgeltyp) * 1.24) * 0.3253;
-    if (N12 === "nein") {
+    if (N12_bis_10_2024 === "nein") {
         result = 0;
     } 
-    else if (N12 === "vollständig") {
+    else if (N12_bis_10_2024 === "vollständig") {
         result = value * (H13 / 40);
     } 
-    else if (N12 === "anteilig") {
+    else if (N12_bis_10_2024 === "anteilig") {
         result = (value / 12) * C13 * (H13 / 40);
     }
 
@@ -273,13 +301,13 @@ function Jahressonderzahlungen10_2024() {
 function Jahressonderzahlungen11_2024() {
     let result = 0;
     let value = ((searchEntgeld(entgeltyp) + 200) * 1.24) * 0.3253;
-    if (N12 === "nein") {
+    if (N12_ab_11_2024 === "nein") {
         result = 0;
     } 
-    else if (N12 === "vollständig") {
+    else if (N12_ab_11_2024 === "vollständig") {
         result = value * (H13 / 40);
     } 
-    else if (N12 === "anteilig") {
+    else if (N12_ab_11_2024 === "anteilig") {
         result = (value / 12) * D13 * (H13 / 40);
     }
     return result;  
@@ -287,13 +315,13 @@ function Jahressonderzahlungen11_2024() {
 function Jahressonderzahlungen2025() {
     let result = 0;
     let value = (((searchEntgeld(entgeltyp) + 200) * 1.055) * 1.24) * 0.3253;
-    if (N12 === "nein") {
+    if (N12_2025 === "nein") {
         result = 0;
     } 
-    else if (N12 === "vollständig") {
+    else if (N12_2025 === "vollständig") {
         result = value * (H13 / 40);
     } 
-    else if (N12 === "anteilig") {
+    else if (N12_2025 === "anteilig") {
         result = (value / 12) * E13 * (H13 / 40);
     }
     return result;  
@@ -301,13 +329,13 @@ function Jahressonderzahlungen2025() {
 function Jahressonderzahlungen2026() {
     let result = 0;
     let value = ((((searchEntgeld(entgeltyp) + 200) * 1.055) * 1.24) * 1.03) * 0.3253;
-    if (N12 === "nein") {
+    if (N12_2026 === "nein") {
         result = 0;
     } 
-    else if (N12 === "vollständig") {
+    else if (N12_2026 === "vollständig") {
         result = value * (H13 / 40);
     } 
-    else if (N12 === "anteilig") {
+    else if (N12_2026 === "anteilig") {
         result = (value / 12) * F13 * (H13 / 40);
     }
 
@@ -316,13 +344,13 @@ function Jahressonderzahlungen2026() {
 function Jahressonderzahlungen2027() {
     let result = 0;
     let value = (((((searchEntgeld(entgeltyp) + 200) * 1.055) * 1.24) * 1.03) * 1.03) * 0.3253;
-    if (N12 === "nein") {
+    if (N12_2027 === "nein") {
         result = 0;
     } 
-    else if (N12 === "vollständig") {
+    else if (N12_2027 === "vollständig") {
         result = value * (H13 / 40);
     } 
-    else if (N12 === "anteilig") {
+    else if (N12_2027 === "anteilig") {
         result = (value / 12) * G13 * (H13 / 40);
     }
 
