@@ -185,3 +185,20 @@ input {
     background-color: #1e1e1e;
     color: white;
 }
+
+.buttonImgFull {
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    /* Optional: Größe des Buttons auf Bildgröße */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttonImgFull img {
+    display: block;
+    width: 20%;   /* oder feste px-Angabe, z.B. 120px */
+    height: auto;  /* oder feste px-Angabe */
+}
