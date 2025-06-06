@@ -17,6 +17,11 @@
         if(document.getElementById("workingType")) {
             selectedEmployeeType();
         }
+
+        if (url === "HTML/employeePage.html") {
+            initMitarbeiter();
+        }
+
         })
         .catch(error => {
             document.getElementById("main-content").innerHTML = "<p>Seite konnte nicht geladen werden.</p>";
