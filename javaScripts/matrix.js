@@ -172,9 +172,6 @@ function getEntgeldtyp() {
     
     return entgeldtyp;
 }
-//Beispielwerte
-//var entgeltyp = "E15Ü°1";
-// --> muss noch ersetzt werden mit der Funktion "getEntgeldtyp()"
 
 function searchEntgeld(entgeldtyp){
     for (searchcount = 0; searchcount < matrix.length; searchcount++){
@@ -271,14 +268,6 @@ function getMatrixValue(key, colIndex = 6) {
     return row ? row[colIndex] : 0;
 }
 
-// Beispielwerte:
-//const N12_bis_10_2024 = "anteilig"; // "nein", "vollständig" oder "anteilig" 
-//const C13 = 8; // anteilige Monate
-//const D13 = 2;
-//const E13 = 8;
-//const F13 = 8;
-//const G13 = 8;
-//const H13 = 30; // Wochenstunden
 
 function Jahressonderzahlungen10_2024() {
     let result = 0;
