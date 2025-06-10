@@ -14,7 +14,7 @@ function initMitarbeiter() {
         card.classList.add("card");
 
         card.innerHTML = `
-          <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div class="cardClose">
             <h3></h3>
             <button class="delete-btn">✖</button>
           </div>
