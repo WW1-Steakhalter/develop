@@ -1,75 +1,186 @@
+document.addEventListener("DOMContentLoaded", () => {
+    initMitarbeiter();
+});
+
+const mitarbeiterListe = [
+    {
+        name: "Cansu",
+        nachname: "Güler",
+        personalnummer: "01",
+        abteilung: "Managment",
+        position: "Teamchef",
+        eintrittsdatum: "2025-03-26",
+        stundenlohn: "20",
+        urlaubsanspruch: "30",
+        arbeitszeitmodell: "Teilzeit"
+    },
+    {
+        name: "Finn",
+        nachname: "Thiele",
+        personalnummer: "02",
+        abteilung: "Managment",
+        position: "Projektmanager",
+        eintrittsdatum: "2025-03-24",
+        stundenlohn: "20",
+        urlaubsanspruch: "30",
+        arbeitszeitmodell: "Teilzeit"
+    },
+    {
+        name: "Nicolas",
+        nachname: "Kunze",
+        personalnummer: "03",
+        abteilung: "Programmierer",
+        position: "Chefprogrammierer",
+        eintrittsdatum: "2025-03-25",
+        stundenlohn: "20",
+        urlaubsanspruch: "30",
+        arbeitszeitmodell: "Teilzeit"
+    },
+    {
+        name: "Yannik",
+        nachname: "Hunger",
+        personalnummer: "04",
+        abteilung: "Programmierer",
+        position: "Softwarearchitekt",
+        eintrittsdatum: "2025-03-25",
+        stundenlohn: "20",
+        urlaubsanspruch: "30",
+        arbeitszeitmodell: "Teilzeit"
+    },
+    {
+        name: "Andreas",
+        nachname: "Herti",
+        personalnummer: "05",
+        abteilung: "Programmierer",
+        position: "Softwarearchitekt",
+        eintrittsdatum: "2025-03-25",
+        stundenlohn: "20",
+        urlaubsanspruch: "30",
+        arbeitszeitmodell: "Teilzeit"
+    },
+    {
+        name: "Elias",
+        nachname: "Hörmann",
+        personalnummer: "06",
+        abteilung: "Design",
+        position: "Creative Content Design",
+        eintrittsdatum: "2025-03-25",
+        stundenlohn: "20",
+        urlaubsanspruch: "30",
+        arbeitszeitmodell: "Teilzeit"
+    },
+    {
+        name: "Nele",
+        nachname: "Muhr",
+        personalnummer: "07",
+        abteilung: "Design",
+        position: "Creative Content Design",
+        eintrittsdatum: "2025-03-25",
+        stundenlohn: "20",
+        urlaubsanspruch: "30",
+        arbeitszeitmodell: "Teilzeit"
+    },
+    {
+        name: "Angelina",
+        nachname: "Gerlach",
+        personalnummer: "08",
+        abteilung: "Design",
+        position: "Usability/UX",
+        eintrittsdatum: "2025-03-25",
+        stundenlohn: "20",
+        urlaubsanspruch: "30",
+        arbeitszeitmodell: "Teilzeit"
+    },
+    {
+        name: "Pascal",
+        nachname: "Hänsch",
+        personalnummer: "09",
+        abteilung: "Stakeholder",
+        position: "Stakeholder",
+        eintrittsdatum: "2025-03-25",
+        stundenlohn: "20",
+        urlaubsanspruch: "30",
+        arbeitszeitmodell: "Teilzeit"
+    },
+
+];
+
 function initMitarbeiter() {
     console.log("initMitarbeiter gestartet");
 
-    const addCardBtn = document.getElementById("addCardBtn");
-    const cardsContainer = document.getElementById("cardsContainer");
+    initMitarbeiterListe();
+    ScrollToTopButton();
+}
 
-    if (!addCardBtn || !cardsContainer) {
-        console.warn("addCardBtn oder cardsContainer nicht gefunden.");
+function initMitarbeiterListe() {
+    const listContainer = document.getElementById("employeeList");
+    const detailContainer = document.getElementById("employeeDetails");
+
+    if (!listContainer || !detailContainer) {
+        console.warn("Container nicht gefunden");
         return;
     }
 
-    addCardBtn.addEventListener("click", function () {
-        const card = document.createElement("div");
-        card.classList.add("card");
+    mitarbeiterListe.forEach((m, index) => {
+        const btn = document.createElement("button");
+        btn.classList.add("employee-button");
+        btn.textContent = `${m.name} ${m.nachname}`;
 
-        card.innerHTML = `
-          <div class="cardClose">
-            <h3></h3>
-            <button class="delete-btn">✖</button>
-          </div>
-          <div class="input-box-employeeInputs">
-            <div class="inputfield"><label>Name:</label><input type="text"></div>
-            <div class="inputfield"><label>Nachname:</label><input type="text"></div>
-            <div class="inputfield"><label>Personalnummer:</label><input type="text"></div>
-            <div class="inputfield"><label>Abteilung/Team:</label><input type="text"></div>
-            <div class="inputfield"><label>Position/Jobtitel:</label><input type="text"></div>
-            <div class="inputfield"><label>Eintrittsdatum:</label><input type="date"></div>
-            <div class="inputfield"><label>Stundenlohn:</label><input type="number"></div>
-            <div class="inputfield"><label>Urlaubsanspruch:</label><input type="number"></div>
-            <div class="inputfield"><label>Arbeitszeitmodell:</label><input type="text"></div>
-          </div>
-        `;
+        btn.addEventListener("click", (event) => {
+            const isMultiSelect = event.altKey;
 
-        document.getElementById("searchInput").addEventListener("input", function (e) {
-            const searchTerm = e.target.value.toLowerCase();
-            const cards = document.querySelectorAll("#cardsContainer .card");
+            if (!isMultiSelect) {
 
-            cards.forEach(card => {
-                const name = card.querySelector(".inputfield:nth-of-type(1) input")?.value.toLowerCase() || "";
-                const nachname = card.querySelector(".inputfield:nth-of-type(2) input")?.value.toLowerCase() || "";
-                const personalnummer = card.querySelector(".inputfield:nth-of-type(3) input")?.value.toLowerCase() || "";
-                const abteilung = card.querySelector(".inputfield:nth-of-type(4) input")?.value.toLowerCase() || "";
-                const position = card.querySelector(".inputfield:nth-of-type(5) input")?.value.toLowerCase() || "";
+                document.querySelectorAll(".employee-button").forEach(b => b.classList.remove("active"));
+                detailContainer.innerHTML = "";
+            }
 
-                const match = [name, nachname, personalnummer, abteilung, position].some(field =>
-                    field.includes(searchTerm)
-                );
+            btn.classList.add("active");
 
-                card.style.display = match ? "block" : "none";
-            });
-        });
-        card.querySelector(".delete-btn").addEventListener("click", function () {
-            card.remove();
+            const card = createEmployeeCard(m);
+            detailContainer.appendChild(card);
         });
 
-        cardsContainer.prepend(card);
+        listContainer.appendChild(btn);
+    });
+}
+
+function createEmployeeCard(m) {
+    const card = document.createElement("div");
+    card.classList.add("employee-card");
+
+    card.innerHTML = `
+        <div class="cardClose">
+            <h3>${m.name} ${m.nachname}</h3>
+        </div>
+        <div class="input-box-employeeInputs">
+            <div class="inputfield"><label>Name:</label><input type="text" value="${m.name}"></div>
+            <div class="inputfield"><label>Nachname:</label><input type="text" value="${m.nachname}"></div>
+            <div class="inputfield"><label>Personalnummer:</label><input type="text" value="${m.personalnummer}"></div>
+            <div class="inputfield"><label>Abteilung/Team:</label><input type="text" value="${m.abteilung}"></div>
+            <div class="inputfield"><label>Position/Jobtitel:</label><input type="text" value="${m.position}"></div>
+            <div class="inputfield"><label>Eintrittsdatum:</label><input type="date" value="${m.eintrittsdatum}"></div>
+            <div class="inputfield"><label>Stundenlohn:</label><input type="number" value="${m.stundenlohn}"></div>
+            <div class="inputfield"><label>Urlaubsanspruch:</label><input type="number" value="${m.urlaubsanspruch}"></div>
+            <div class="inputfield"><label>Arbeitszeitmodell:</label><input type="text" value="${m.arbeitszeitmodell}"></div>
+        </div>
+    `;
+
+    return card;
+}
+
+function ScrollToTopButton() {
+    const backToTopBtn = document.getElementById("backToTopBtn");
+    if (!backToTopBtn) return;
+
+    window.addEventListener("scroll", () => {
+        backToTopBtn.style.display =
+            (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300)
+                ? "block"
+                : "none";
     });
 
-    const backToTopBtn = document.getElementById("backToTopBtn");
-
-    window.onscroll = function () {
-        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-            backToTopBtn.style.display = "block";
-        } else {
-            backToTopBtn.style.display = "none";
-        }
-    };
-
-    backToTopBtn.addEventListener("click", function () {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
+    backToTopBtn.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
     });
 }
