@@ -3,6 +3,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Comfortaa:wght@300..700&family=Ewert&family=Nerko+One&display=swap" rel="stylesheet">
     <title>WW1 Rechner</title>
     <link rel="stylesheet" href="CSS/style.css">
     <script src="javaScripts/menuController.js?v=1.3"></script>
@@ -17,23 +20,64 @@
 
 <div class="sidebar">
     <h2>Menü</h2>
-    <div class = "clock-container">
-        <img class = "clock" src = "img/Clock.svg">
-    </div>
-    <ul>
+    <!--<ul>
         <li><a href="#" onclick="loadPage('HTML/startPage.html')">Start</a></li>
         <li><a href="#" onclick="loadPage('HTML/mainPage.html')">Hauptrechnung</a></li>
         <li><a href="#" onClick="loadPage('HTML/projectPage.html')">Projekte</a></li>
         <li><a href="#" onClick="loadPage('HTML/templatePage.html')">Vorlagen</a></li>
         <li><a href="#" onClick="loadPage('HTML/employeePage.html')">Mitarbeiter</a></li>
         <li><a href="#" onclick="loadPage('HTML/settingsPage.html')">Einstellungen</a></li>
-    </ul>
+    </ul>-->
 </div>
+
+<div class = "clock-container">
+    <img class = "clock" src = "img/ClockWithCogs.svg">
+    <img class = "pointer" src = "img/Pointer.svg">
+    <button type = "button" class="buttonImgFull-Menu clock-menu-btn-Start clock-menu-btn" onclick=" selectClockMenuBtn(this); loadPage('HTML/startPage.html'); rotatePointer(-77)">
+        <span class = "button-text-Menu">Start</span>
+        <img class = "button-unselected-Menu" src="img/ButtonUnselected.svg" alt="Start" title="Start">
+        <img class = "button-Hovered-Menu" src="img/ButtonHovered.svg" alt="Start" title="Start">
+        <img class = "button-Selected-Menu" src="img/ButtonSelected.svg" alt="Start" title="Start">
+    </button>
+    <button type = "button" class="buttonImgFull-Menu clock-menu-btn-Hauptrechnung clock-menu-btn" onclick=" selectClockMenuBtn(this); loadPage('HTML/mainPage.html'); rotatePointer(-45)">
+        <span class = "button-text-Menu">Hauptrechnung</span>
+        <img class = "button-unselected-Menu" src="img/ButtonUnselected.svg" alt="Hauptrechnung" title="Hauptrechnung">
+        <img class = "button-Hovered-Menu" src="img/ButtonHovered.svg" alt="Hauptrechnung" title="Hauptrechnung">
+        <img class = "button-Selected-Menu" src="img/ButtonSelected.svg" alt="Hauptrechnung" title="Hauptrechnung">
+    </button>
+    <button type = "button" class="buttonImgFull-Menu clock-menu-btn-Projekte clock-menu-btn" onclick=" selectClockMenuBtn(this); loadPage('HTML/projectPage.html'); rotatePointer(-15)">
+        <span class = "button-text-Menu">Projekte</span>
+        <img class = "button-unselected-Menu" src="img/ButtonUnselected.svg" alt="Projekte" title="Projekte">
+        <img class = "button-Hovered-Menu" src="img/ButtonHovered.svg" alt="Projekte" title="Projekte">
+        <img class = "button-Selected-Menu" src="img/ButtonSelected.svg" alt="Projekte" title="Projekte">
+    </button>
+    <button type = "button" class="buttonImgFull-Menu clock-menu-btn-Vorlagen clock-menu-btn" onclick=" selectClockMenuBtn(this); loadPage('HTML/templatePage.html'); rotatePointer(15)">
+        <span class = "button-text-Menu">Vorlagen</span>
+        <img class = "button-unselected-Menu" src="img/ButtonUnselected.svg" alt="Vorlage" title="Vorlagen">
+        <img class = "button-Hovered-Menu" src="img/ButtonHovered.svg" alt="Vorlage" title="Vorlage">
+        <img class = "button-Selected-Menu" src="img/ButtonSelected.svg" alt="Vorlage" title="Vorlagen">
+    </button>
+    <button type = "button" class="buttonImgFull-Menu clock-menu-btn-Mitarbeiter clock-menu-btn" onclick=" selectClockMenuBtn(this); loadPage('HTML/employeePage.html'); rotatePointer(45)" >
+        <span class = "button-text-Menu">Mitarbeiter</span>
+        <img class = "button-unselected-Menu" src="img/ButtonUnselected.svg" alt="Mitarbeiter" title="Mitarbeiter">
+        <img class = "button-Hovered-Menu" src="img/ButtonHovered.svg" alt="Mitarbeiter" title="Mitarbeiter">
+        <img class = "button-Selected-Menu" src="img/ButtonSelected.svg" alt="Mitarbeiter" title="Mitarbeiter">
+    </button>
+    <button type = "button" class="buttonImgFull-Menu clock-menu-btn-Einstellungen clock-menu-btn" onclick=" selectClockMenuBtn(this); loadPage('HTML/settingsPage.html'); rotatePointer(77)">
+        <span class = "button-text-Menu">Einstellungen</span>
+        <img class = "button-unselected-Menu" src="img/ButtonUnselected.svg" alt="Einstellungen" title="Einstellungen">
+        <img class = "button-Hovered-Menu" src="img/ButtonHovered.svg" alt="Einstellungen" title="Einstellungen">
+        <img class = "button-Selected-Menu" src="img/ButtonSelected.svg" alt="Einstellungen" title="Einstellungen">
+    </button>
+</div>
+
 
 <div class="main-content" id="main-content">
     <h1>Willkommen!</h1>
     <p>Dies ist die Startseite dieses Projektes!</p>
 </div>
+<script src="javaScripts/button.js?v=1.5"></script>
 <script src="javaScripts/matrix.js?v=1.5"></script>
+<script src="javaScripts/pointer.js?v=1.3"></script>
 </body>
 </html>
