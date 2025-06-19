@@ -1,21 +1,13 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Mitarbeiterkarten</title>
-    <link rel="stylesheet" href="../CSS/style.css" />
-    <link rel="stylesheet" href="../CSS/employee.css" />
-</head>
-<body>
+<title>Mitarbeiter</title>
+<link rel="stylesheet" href="../CSS/style.css" />
+<link rel="stylesheet" href="../CSS/employeePage.css" />
+
+<script src="../javaScripts/mitarbeiter.js"></script>
 <div class="containerEmployeePage">
-    <div id="searchBarWrapper">
-        <input type="text" id="searchInput" placeholder="Mitarbeiter suchen..." />
-        <button id="addCardBtn">Mitarbeiter hinzufügen</button>
+    <div class="employee-page-layout">
+        <div id="employeeList" class="employee-list"></div>
+        <div id="employeeDetails" class="employee-details"></div>
     </div>
-    <div id="cardsContainer"></div>
 </div>
 <button id="backToTopBtn" title="Nach oben">↑</button>
-<script src="../javaScripts/mitarbeiter.js"></script>
-</body>
-</html>
+
