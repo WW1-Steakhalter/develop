@@ -22,3 +22,4 @@ function loadProjectData() {
             console.error("❌ Fehler beim Laden der Projektdaten:", error);
         });
 }
+

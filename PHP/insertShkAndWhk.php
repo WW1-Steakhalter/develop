@@ -52,6 +52,7 @@ if (!$stmt) {
     die("❌ Prepare fehlgeschlagen: " . $conn->error);
 }
 
+
 $stmt->bind_param(
     "sssddddddddddd",
     $name, $mitarbeiter_id, $type,
