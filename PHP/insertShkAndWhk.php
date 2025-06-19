@@ -28,7 +28,7 @@ $month2027 = getVal('month2027');
 $hoursPerWeek = getVal('hoursPerWeek');
 $yearSum2024 = getVal('yearSum2024');
 $yearSum2025 = getVal("yearSum2025");
-$yearSum2026 = getVal("yearSu2026");
+$yearSum2026 = getVal("yearSum2026");
 $yearSum2027 = getVal("yearSum2027");
 $shkEmployeeSum = getVal("shkEmployeeSum");
 
