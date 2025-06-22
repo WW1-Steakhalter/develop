@@ -3,13 +3,6 @@
     margin: 2rem auto;
     padding: 1rem;
 }
-.employee-layout {
-    display: flex;
-    gap: 2rem;
-    max-width: 1200px;
-    margin: auto;
-    padding: 1rem;
-}
 
 .employee-page-layout {
     display: grid;
@@ -25,26 +18,17 @@
     padding: 1rem;
     border: 1px solid #444;
     border-radius: 8px;
-}
-
-.employee-details {
-    background-color: #2c2c2c;
-    padding: 1.5rem;
-    border: 1px solid gold;
-    border-radius: 12px;
     color: white;
 }
 
-.employee-list button {
+.search-input {
     width: 100%;
-    background: none;
-    border: 1px solid #444;
-    color: white;
     padding: 10px;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
     border-radius: 6px;
-    cursor: pointer;
-    text-align: left;
+    border: 1px solid #888;
+    background-color: #2a2a2a;
+    color: white;
 }
 
 .employee-button {
@@ -71,16 +55,12 @@
     font-weight: bold;
 }
 
-.employee-list button:hover {
-    background-color: #333;
-}
-
-#employeeDetails .employee-card {
-    margin-bottom: 1.5rem;
-    border: 1px solid #444;
-    border-radius: 8px;
-    padding: 1rem;
+.employee-details {
     background-color: #2c2c2c;
+    padding: 1.5rem;
+    border: 1px solid gold;
+    border-radius: 12px;
+    color: white;
 }
 
 #backToTopBtn {
@@ -104,3 +84,96 @@
 #backToTopBtn:hover {
     background-color: #ffcc00;
 }
+
+.search-input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+    border: 1px solid #888;
+    background-color: #2a2a2a;
+    color: white;
+}
+
+.employee-card {
+    background-color: #2c2c2c;
+    border: 2px solid #474747;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    color: white;
+    transition: transform 0.2s;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.modal-content {
+    background: #2c2c2c;
+    padding: 2rem;
+    border-radius: 10px;
+    border: 2px solid gold;
+    color: white;
+    width: 400px;
+}
+
+.modal-content .inputfield {
+    margin-bottom: 1rem;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 8px;
+    background-color: #1e1e1e;
+    border: 1px solid #555;
+    border-radius: 4px;
+    color: white;
+}
+
+.modal-content button {
+    margin-right: 0.5rem;
+    padding: 8px 12px;
+    background-color: gold;
+    border: none;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.hidden {
+    display: none;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+}
+
+.global-button {
+    background-color: gold;
+    color: black;
+    font-weight: bold;
+    border: 1px solid #888;
+    border-radius: 6px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.global-button:hover {
+    background-color: #ffcc00;
+}
+

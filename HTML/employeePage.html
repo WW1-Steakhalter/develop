@@ -4,10 +4,35 @@
 
 <script src="../javaScripts/mitarbeiter.js"></script>
 <div class="containerEmployeePage">
-    <div class="employee-page-layout">
-        <div id="employeeList" class="employee-list"></div>
-        <div id="employeeDetails" class="employee-details"></div>
+    <div class="containerEmployeePage">
+
+        <div class="top-bar">
+            <button id="addEmployeeBtn" class="employee-button global-button">+ Mitarbeiter hinzufügen</button>
+        </div>
+
+        <div class="employee-page-layout">
+            <div class="employee-list">
+                <div id="employeeList"></div>
+            </div>
+
+            <div id="employeeDetails" class="employee-details"></div>
+        </div>
     </div>
 </div>
-<button id="backToTopBtn" title="Nach oben">↑</button>
 
+<div id="employeeModal" class="modal hidden">
+    <div class="modal-content">
+        <h2>Neuer Mitarbeiter</h2>
+        <div class="input-box-employeeInputs">
+            <div class="inputfield"><label>Name:</label><input type="text" id="newName"></div>
+            <div class="inputfield"><label>Nachname:</label><input type="text" id="newNachname"></div>
+            <div class="inputfield"><label>Personalnummer:</label><input type="text" id="newPersonalnummer"></div>
+            <div class="inputfield"><label>Abteilung/Team:</label><input type="text" id="newAbteilung"></div>
+            <div class="inputfield"><label>Position/Jobtitel:</label><input type="text" id="newPosition"></div>
+        </div>
+        <button id="saveEmployeeBtn">Speichern</button>
+        <button id="closeModalBtn">Abbrechen</button>
+    </div>
+
+    <button id="backToTopBtn" title="Nach oben">↑</button>
+</div>
