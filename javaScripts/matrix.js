@@ -399,3 +399,100 @@ function GesamtSumme(){
     return summe;
 }
 
+
+
+//SHK/WHK
+
+let mitarbeiterTyp, D26_SHK_WHK_2024, E26_SHK_WHK_2025, F26_SHK_WHK_2026, G26_SHK_WHK_2027, H26_SHK_WHK_Wochenstunden, Stundensatz
+mitarbeiterTyp = document.getElementById('workingType02').value;
+if (mitarbeiterTyp === "SHK") {
+        Stundensatz = 16.99; // Stundensatz für SHK
+    }
+    else if (mitarbeiterTyp === "WHK") {
+        Stundensatz = 18.27; // Stundensatz für WHK
+    } else {
+        Stundensatz = 0;
+    }
+document.getElementById('workingType02').value = Stundensatz;
+
+function userInputGetter_SHK_WHK() {
+    mitarbeiterTyp = document.getElementById('workingType02').value;
+    D26_SHK_WHK_2024 = parseFloat(document.getElementById('month2024').value) || 0;
+    E26_SHK_WHK_2025 = parseFloat(document.getElementById('month2025').value) || 0;
+    F26_SHK_WHK_2026 = parseFloat(document.getElementById('month2026').value) || 0;
+    G26_SHK_WHK_2027 = parseFloat(document.getElementById('month2027').value) || 0;
+    H26_SHK_WHK_Wochenstunden = parseFloat(document.getElementById('hoursPerWeek').value) || 0;
+
+    if (mitarbeiterTyp === "SHK") {
+        Stundensatz = 16.99; // Stundensatz für SHK
+    }
+    else if (mitarbeiterTyp === "WHK") {
+        Stundensatz = 18.27; // Stundensatz für WHK
+    } else {
+        Stundensatz = 0;
+    }
+}
+
+
+function JahressummeSHK_WHK_2024(){
+    result = ((H26_SHK_WHK_Wochenstunden * Stundensatz) * 4,333333) * D26_SHK_WHK_2024
+    return result;
+}
+function JahressummeSHK_WHK_2025(){
+    result = ((H26_SHK_WHK_Wochenstunden * Stundensatz) * 4,333333) * E26_SHK_WHK_2025
+    return result;
+}
+function JahressummeSHK_WHK_2026(){
+    result = ((H26_SHK_WHK_Wochenstunden * Stundensatz) * 4,333333) * F26_SHK_WHK_2026
+    return result;
+}
+function JahressummeSHK_WHK_2027(){
+    result = ((H26_SHK_WHK_Wochenstunden * Stundensatz) * 4,333333) * G26_SHK_WHK_2027
+    return result;
+}
+
+function GesamtSummeSHK_WHK(){
+    let summe = 0;
+    summe += JahressummeSHK_WHK_2024();
+    summe += JahressummeSHK_WHK_2025();
+    summe += JahressummeSHK_WHK_2026();
+    summe += JahressummeSHK_WHK_2027();
+    return summe;
+}
+
+function OutputSHK_WHK() {
+    document.getElementById("yearSum_2024").value = JahressummeSHK_WHK_2024();
+    document.getElementById("yearSum_2025").value = JahressummeSHK_WHK_2025();
+    document.getElementById("yearSum_2026").value = JahressummeSHK_WHK_2026();
+    document.getElementById("yearSum_2027").value = JahressummeSHK_WHK_2027();
+
+    document.getElementById("shkEmployeeSum").value = GesamtSummeSHK_WHK();
+}
+
+function rechnen_SHK_WHK() {
+    alert("Die Berechnung wird durchgeführt. Bitte warten Sie einen Moment.");
+    userInputGetter_SHK_WHK();
+    OutputSHK_WHK()
+}
+
+
+
+
+
+
+
+
+
+// Nur lokal: Verhindere das Abschicken des Formulars
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('form');
+    if(form) {
+        form.addEventListener('submit', function(e) {
+            // Entferne diese Zeile, wenn du online bist!
+            e.preventDefault();
+            // Hier kannst du deine Rechenfunktion aufrufen
+            // z.B. calculateShk();
+        });
+    }
+});
+
