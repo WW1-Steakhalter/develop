@@ -19,7 +19,7 @@ function loadProjectData() {
             });
         })
         .catch(error => {
-            console.error("❌ Fehler beim Laden der Projektdaten:", error);
+            console.error(" Fehler beim Laden der Projektdaten:", error);
         });
 }
 
