@@ -249,6 +249,7 @@ input {
 /* Matrix bearbeiten Button */
 
 /* Matrix PopUp */
+
 .popup-overlay {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -268,7 +269,29 @@ input {
     max-height: 75vh;
     overflow: auto;
     box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+    border: 1px solid gold;
+    animation: popup-fade-in 0.2s;
+    margin: 5vh 10vw;
+    scrollbar-width: none;        /* Firefox */ /*Hässliche Scrollbar wegmachen*/
+    -ms-overflow-style: none;   /* Internet Explorer und Edge */
+
 }
+.popup-content::-webkit-scrollbar {
+    display: none;                /* Chrome, Safari, Opera */
+}
+.popup-content.fade-out {
+    animation: popup-fade-out 0.2s forwards;
+}
+
+@keyframes popup-fade-in {
+    from { transform: scale(0.95); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+}
+@keyframes popup-fade-out {
+    from { transform: scale(1); opacity: 1; }
+    to   { transform: scale(0.95); opacity: 0; }
+}
+
 .popup-content h2 {
     margin-top: 0;
     color: #ffd700;
@@ -296,7 +319,7 @@ input {
     color: #ffd700;
 }
 #matrixEditor input[type="number"] {
-    width: 100%;
+    width: 95%;
     background: #1e1e1e;
     color: #ffd700;
     border: 1px solid #ffd700;
