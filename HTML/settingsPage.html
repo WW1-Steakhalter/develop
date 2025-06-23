@@ -1,3 +1,63 @@
-<h1>Willkommen!</h1>
-<p>Einstellungen</p>
+<div class="settings-container">
+    <h1 class="settings-title">Einstellungen</h1>
 
+<section class="settings-section">
+    <h2 class="settings-subtitle">Ansicht</h2>
+    <div class="settings-row">
+        <span>Theme:</span>
+        <button class="settings-btn" onclick="alert('Darkmode kommt bald!')">Darkmode</button>
+    </div>
+</section>
+
+
+
+<section class="settings-section">
+        <h2 class="settings-subtitle">Berechnungen</h2>
+        <p>Die Matrix kann bearbeitet werden, falls sich die Werte ändern sollten!</p>
+        <div class="settings-row">
+        <div class = "inputfield-button-matrix">
+            <button type="button" class="buttonImgFull" onclick="openMatrixPopup()">
+                <span class = "button-text" >Matrix bearbeiten</span>
+                <img class = "button-unselected" src="img/ButtonUnselected.svg" alt="Matrix bearbeiten" title="Matrix bearbeiten">
+                <img class = "button-Hovered" src="img/ButtonHovered.svg" alt= "Matrix bearbeiten" title="Matrix bearbeiten">
+            </button>
+        </div>
+
+        <p class="settings-hint">Änderungen werden nicht dauerhaft gespeichert!</p>
+    </section>
+</div>
+
+<!-- Matrix PopUp -->
+<div id="matrixPopup" class="popup-overlay" style="display:none;">
+  <div class="popup-content">
+    <h2>Matrix bearbeiten</h2>
+    <div id="matrixEditor"></div>
+    <div class="folgejahr-row">
+        <label>
+            <span>Folgejahr 1:</span>
+            <input type="number" step="1" id="folgejahr_1_input">
+        </label>
+        <label>
+            <span>Folgejahr 2:</span>
+            <input type="number" step="0.001" id="folgejahr_2_input">
+        </label>
+    </div>
+    <div class="popup-btn-row">
+        <div class = "inputfield-button-matrix">
+            <button type="button" class="buttonImgFull" onclick="saveMatrix()">
+                <span class = "button-text" >Speichern</span>
+                <img class = "button-unselected" src="img/ButtonUnselected.svg" alt="Matrix speichern" title="Matrix speichern">
+                <img class = "button-Hovered" src="img/ButtonHovered.svg" alt= "Matrix speichern" title="Matrix speichern">
+            </button>
+        </div>
+        <div class = "inputfield-button-matrix">
+            <button type="button" class="buttonImgFull" onclick="closeMatrixPopup()">
+                <span class = "button-text" >Abbrechen</span>
+                <img class = "button-unselected" src="img/ButtonUnselected.svg" alt="Abbrechen" title="Abbrechen">
+                <img class = "button-Hovered" src="img/ButtonHovered.svg" alt= "Abbrechen" title="Abbrechen">
+            </button>
+        </div>
+        
+    </div>
+  </div>
+</div>

@@ -7,7 +7,7 @@ const matrix = [
     ["E15Ü°3", 7434.87636],
     ["E15Ü°4", 7853.95084],
     ["E15Ü°5", 7957.03868],
-    ["E15Ü6", 0.00 ],
+    ["E15Ü°6", 0.00 ],
 
     ["E15°1", 5017.3082 ],
     ["E15°2", 5394.34776],
@@ -138,7 +138,9 @@ const matrix = [
 ];
 
 let entgeltyp, H13, C13, D13, E13, F13, G13, N12_bis_10_2024, N12_ab_11_2024, N12_2025, N12_2026, N12_2027;
-
+// FOLGEWERTE für die NEUEN MATRIXWERTE
+let folgejahr_1 = 200;
+let folgejahr_2 = 1.055;
 // Getter
 
 function rechnen() {
@@ -233,41 +235,35 @@ function OutputBrutto2024_bis_10_2024(){
         value = (value * 1.24 ) + 120;
     }
     return value;
-}    
+}
 function OutputBrutto2024_ab_11_2024(){
     let value = searchEntgeld(entgeltyp);
     if (value !== 0){
-        value = (value + 200) * 1.24;
+        value = (value + folgejahr_1) * 1.24;
     }
     return value;
 }
 function OutputBrutto2025(){
     let value = searchEntgeld(entgeltyp);
     if (value !== 0){
-        value = ((value + 200) * 1.055) * 1.24;
+        value = ((value + folgejahr_1) * folgejahr_2) * 1.24;
     }
     return value;
 }
 function OutputBrutto2026(){
     let value = searchEntgeld(entgeltyp);
     if (value !== 0){
-        value = (((value + 200) * 1.055) * 1.24) * 1.03;
+        value = (((value + folgejahr_1) * folgejahr_2) * 1.24) * 1.03;
     }
     return value;
 }
 function OutputBrutto2027(){
     let value = searchEntgeld(entgeltyp);
     if (value !== 0){
-        value = ((((value + 200) * 1.055) * 1.24) * 1.03) * 1.03;
+        value = ((((value + folgejahr_1) * folgejahr_2) * 1.24) * 1.03) * 1.03;
     }
     return value;
 }
-function getMatrixValue(key, colIndex = 6) {
-    // colIndex = 6, weil Spalte 7 in Excel, aber 0-basiert in JS
-    const row = matrix.find(r => r[0] === key);
-    return row ? row[colIndex] : 0;
-}
-
 
 function Jahressonderzahlungen10_2024() {
     let result = 0;
@@ -289,7 +285,7 @@ function Jahressonderzahlungen10_2024() {
 //Funktionen für JSZ Berechnungen
 function Jahressonderzahlungen11_2024() {
     let result = 0;
-    let value = ((searchEntgeld(entgeltyp) + 200) * 1.24) * 0.3253;
+    let value = ((searchEntgeld(entgeltyp) + folgejahr_1) * 1.24) * 0.3253;
     if (N12_ab_11_2024 === "nein") {
         result = 0;
     } 
@@ -303,7 +299,7 @@ function Jahressonderzahlungen11_2024() {
 }
 function Jahressonderzahlungen2025() {
     let result = 0;
-    let value = (((searchEntgeld(entgeltyp) + 200) * 1.055) * 1.24) * 0.3253;
+    let value = (((searchEntgeld(entgeltyp) + folgejahr_1) * folgejahr_2) * 1.24) * 0.3253;
     if (N12_2025 === "nein") {
         result = 0;
     } 
@@ -317,7 +313,7 @@ function Jahressonderzahlungen2025() {
 }
 function Jahressonderzahlungen2026() {
     let result = 0;
-    let value = ((((searchEntgeld(entgeltyp) + 200) * 1.055) * 1.24) * 1.03) * 0.3253;
+    let value = ((((searchEntgeld(entgeltyp) + folgejahr_1) * folgejahr_2) * 1.24) * 1.03) * 0.3253;
     if (N12_2026 === "nein") {
         result = 0;
     } 
@@ -332,7 +328,7 @@ function Jahressonderzahlungen2026() {
 }
 function Jahressonderzahlungen2027() {
     let result = 0;
-    let value = (((((searchEntgeld(entgeltyp) + 200) * 1.055) * 1.24) * 1.03) * 1.03) * 0.3253;
+    let value = (((((searchEntgeld(entgeltyp) + folgejahr_1) * folgejahr_2) * 1.24) * 1.03) * 1.03) * 0.3253;
     if (N12_2027 === "nein") {
         result = 0;
     } 

@@ -8,7 +8,7 @@
     align-items: center;
 }
 .button-text{
-    font-family: "Rye", serif;
+    font-family: "Courier Prime", monospace;
 }
 
 /* Responsive Button mit Text in Bild */
@@ -222,9 +222,17 @@
 }
 .button-text-Menu{
     font-family: "Courier Prime", monospace;
-
 }
 
+
+/*Matirx bearbeiten Buttons*/
+.inputfield-button-matrix {
+    flex: 1 1 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
+}
 
 
 
