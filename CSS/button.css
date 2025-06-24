@@ -73,17 +73,22 @@
 
 .clock-container {
     position: fixed;
-    top: 22vh;
+    top: 30%;
     left: 0;
     width: 21.5vw;
     height: 21.5vw;
-    max-width: 400px;
+    max-width: 300px;
     max-height: 400px;
+    margin-left: 0;
+    padding-left: 0;
+    box-sizing: border-box;
+    z-index: 1000;
     
-    margin-left: -5.2%;
+    margin-left: -3.2%;
     padding-left: -10%;
     
 }
+
 .clock {
     position: absolute;
     top: 0; left: 0;
@@ -101,6 +106,27 @@
     transform-origin: 13.636% 50%;
     transition: transform 0.5s cubic-bezier(0.4, 2, .6, 1);
 }
+
+
+/*NÖTIG für reltive Größe für Uhr*/
+.buttonImgFull-Menu,
+.clock-menu-btn-Start,
+.clock-menu-btn-Hauptrechnung,
+.clock-menu-btn-Projekte,
+.clock-menu-btn-Mitarbeiter,
+.clock-menu-btn-Einstellungen {
+    max-width: 260px;    /* Buttons nicht breiter als Sidebar */
+    width: 90%;
+    left: 50%;          /* zentriert innerhalb des Containers */
+    transform: translate(-50%, -50%);
+}
+
+/* Passe die left- und top-Werte ggf. für die Buttons an, damit sie nicht überstehen */
+.clock-menu-btn-Start        { left: 50%; }
+.clock-menu-btn-Hauptrechnung{ left: 50%; }
+.clock-menu-btn-Projekte     { left: 50%; }
+.clock-menu-btn-Mitarbeiter  { left: 50%; }
+.clock-menu-btn-Einstellungen{ left: 50%; }
 
 
 /* Responsive Button mit Text in Bild FÜR MENÜ*/
@@ -169,7 +195,7 @@
 .clock-menu-btn-Start {
     position: absolute;
     top: 0%;    /* Bewegen der Button */
-    left: 55%;
+    left: 60%;
     transform: translate(-50%, -50%);
     z-index: 2;
     width: 160px;   /*Button Größe*/
@@ -177,8 +203,8 @@
 }
 .clock-menu-btn-Hauptrechnung{
     position: absolute;
-    top: 18%;    /* Bewegen der Button */
-    left: 80%;
+    top: 22%;    /* Bewegen der Button */
+    left: 90%;
     transform: translate(-50%, -50%);
     z-index: 2;
     width: 160px;   /*Button Größe*/
@@ -186,17 +212,8 @@
 }
 .clock-menu-btn-Projekte{
     position: absolute;
-    top: 40%;    /* Bewegen der Button */
-    left: 90%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    width: 160px;   /*Button Größe*/
-    height: 35px;
-}
-.clock-menu-btn-Vorlagen{
-    position: absolute;
-    top: 60%;    /* Bewegen der Button */
-    left: 90%;
+    top: 50%;    /* Bewegen der Button */
+    left: 100%;
     transform: translate(-50%, -50%);
     z-index: 2;
     width: 160px;   /*Button Größe*/
@@ -204,8 +221,8 @@
 }
 .clock-menu-btn-Mitarbeiter{
     position: absolute;
-    top: 82%;    /* Bewegen der Button */
-    left: 80%;
+    top: 78%;    /* Bewegen der Button */
+    left: 90%;
     transform: translate(-50%, -50%);
     z-index: 2;
     width: 160px;   /*Button Größe*/
@@ -214,7 +231,7 @@
 .clock-menu-btn-Einstellungen {
     position: absolute;
     top: 100%;    /* Bewegen der Button */
-    left: 55%;
+    left: 60%;
     transform: translate(-50%, -50%);
     z-index: 2;
     width: 160px;   /*Button Größe*/
