@@ -18,14 +18,20 @@ function loadPage(url) {
                 selectedEmployeeType();
             }
 
-            if (url === "HTML/employeePage.html") {
-                initMitarbeiter();
-            }
-            if (url === "HTML/projectPage.html") {
+
+        if (url === "HTML/employeePage.html") {
+            initMitarbeiter();
+            initAddEmployeePopup();
+            initScrollToTopButton();
+        }
+
+       
+        if (url === "HTML/projectPage.html") {
                 if (typeof loadProjectData === "function") {
                     loadProjectData();
                 }
             }
+
 
         })
         .catch(error => {
