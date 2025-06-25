@@ -10,7 +10,6 @@
 <form method="post" >
 <div class="section-box">
     <h3>Angaben zum Mitarbeiter</h3>
-
     <div class="input-box-employeeInputs">
         <div class="inputfield">
             <label for="name">Name</label><input id="name" name="name" type="text">
@@ -161,10 +160,41 @@
 
 <br><br>
 <div class="section-box">
-    <button type="submit">Rechnen</button>
+    <!--<button type="submit">Rechnen</button>
     <button type="reset">Löschen</button>
     <button type="button" onclick="submitEmployeeInputsToDb()">Mitarbeiter speichern</button>
-    <button type="button">zu Projekt hinzufügen</button>
-    <button type="button" onclick = "rechnen()">Rechnen 1</button>
+    <button type="button">zu Projekt hinzufügen</button>-->
+    <!--<button type="button" onclick = "rechnen()">-->
+    <!--<input class = "buttonImg" type = "image" src = "img/ButtonUnselected.svg" onclick = "rechnen()" alt = "Rechnen" title = "Rechnen">-->
+    <div class = "input-box">
+        <div class = "inputfield-button">
+            <button type="button" class="buttonImgFull" onclick="rechnen()">
+                <span class = "button-text" >Rechnen</span>
+                <img class = "button-unselected" src="img/ButtonUnselected.svg" alt="Rechnen" title="Rechnen">
+                <img class = "button-Hovered" src="img/ButtonHovered.svg" alt="Rechnen" title="Rechnen">
+            </button>
+        </div>
+        <div class = "inputfield-button">
+            <button type="button" class="buttonImgFull">
+                <span class = "button-text" >Löschen</span>
+                <img class = "button-unselected" src="img/ButtonUnselected.svg" alt="Löschen" title="Löschen">
+                <img class = "button-Hovered" src="img/ButtonHovered.svg" alt="Löschen" title="Löschen">
+            </button>
+        </div>
+        <div class = "inputfield-button">
+            <button type="button" class="buttonImgFull" onclick="submitEmployeeInputsToDb()">
+                <span class = "button-text" >Mitarbeiter speichern</span>
+                <img class = "button-unselected" src="img/ButtonUnselected.svg" alt="Mitarbeiter hinzufügen" title="Mitarbeiter hinzufügen">
+                <img class = "button-Hovered" src="img/ButtonHovered.svg" alt="Mitarbeiter hinzufügen" title="Mitarbeiter hinzufügen">
+            </button>
+        </div>
+        <div class="inputfield-button">
+            <button type="button" class="buttonImgFull" onclick="submitEmployeeInputsToDbAndAddToProject()">
+                <span class = "button-text" >Zu Projekt hinzufügen</span>
+                <img class = "button-unselected" src="img/ButtonUnselected.svg" alt="Zu Projekt hinzufügen" title="Zu Projekt hinzufügen">
+                <img class = "button-Hovered" src="img/ButtonHovered.svg" alt="Zu Projekt hinzufügen" title="Zu Projekt hinzufügen">
+            </button>
+        </div>
+    </div>
 </div>
 </form>

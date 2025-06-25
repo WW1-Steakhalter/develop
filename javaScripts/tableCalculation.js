@@ -31,11 +31,6 @@ function selectedEmployeeType (){
     });
 }
 
-function calculateWithIncludedAgShares (){
-
-
-}
-
 function submitEmployeeInputsToDb (){
     const data = new FormData();
 
@@ -80,6 +75,41 @@ function submitEmployeeInputsToDb (){
 
     // Anfrage senden
     fetch("PHP/insertMitarbeiter.php", {
+        method: "POST",
+        body: data
+    })
+
+        .then(res => res.text())
+        .then(msg => alert("Antwort vom Server: " + msg))
+        .catch(err => alert("Fehler beim Senden: " + err)
+        );
+}
+
+function submitShkInputsToDb (){
+    const data = new FormData();
+
+    data.append("name", document.getElementById("name")?.value || "");
+    data.append("mitarbeiter_id", document.getElementById("mitarbeiter_id")?.value || "");
+    data.append("workingType02", document.getElementById("workingType02")?.value || "");
+
+    data.append("salary", document.getElementById("salary")?.value || "");
+    data.append("month2024", document.getElementById("month2024")?.value || "");
+    data.append("month2025", document.getElementById("month2025")?.value || "");
+    data.append("month2026", document.getElementById("month2026")?.value || "");
+    data.append("month2027", document.getElementById("month2027")?.value || "");
+    data.append("hoursPerWeek", document.getElementById("hoursPerWeek")?.value || "");
+
+
+    data.append("yearSum2024", document.getElementById("yearSum2024")?.value || "");
+    data.append("yearSum2025", document.getElementById("yearSum2025")?.value || "");
+    data.append("yearSum2026", document.getElementById("yearSum2026")?.value || "");
+    data.append("yearSum2027", document.getElementById("yearSum2027")?.value || "");
+    data.append("shkEmployeeSum", document.getElementById("shkEmployeeSum")?.value || "");
+
+
+
+    // Anfrage senden
+    fetch("PHP/insertShkAndWhk.php", {
         method: "POST",
         body: data
     })

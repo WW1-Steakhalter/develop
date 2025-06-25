@@ -1,0 +1,229 @@
+/*MainpageButtons*/
+
+.inputfield-button {
+    flex: 1 1 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.button-text{
+    font-family: "Rye", serif;
+}
+
+/* Responsive Button mit Text in Bild */
+.buttonImgFull {
+    position: relative;
+    display: inline-block;
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+    width: 180px;
+    height: 70px;
+}
+
+.buttonImgFull .button-unselected,
+.buttonImgFull .button-Hovered {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    transition: opacity 0.3s;
+    display: block;
+    z-index: 1;
+}
+
+.buttonImgFull .button-Hovered {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.buttonImgFull:hover .button-Hovered {
+    opacity: 1;
+}
+
+.buttonImgFull:hover .button-unselected {
+    opacity: 0;
+}
+
+.buttonImgFull .button-text {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    color: wheat;
+    font-weight: bold;
+    font-size: 1.1em;
+    text-align: center;
+    width: 90%;
+    pointer-events: none;
+    user-select: none;
+    white-space: normal;
+    z-index: 2;
+}
+
+
+
+/*Animation*/
+.animation {
+    width: 200%;
+    height: 90%;
+}
+
+/*Clockmenu*/
+
+.clock-container {
+    position: fixed;
+    top: 22vh;
+    left: 0;
+    width: 21.5vw;
+    height: 21.5vw;
+    max-width: 400px;
+    max-height: 400px;
+    
+    margin-left: -5.2%;
+    padding-left: -10%;
+    
+}
+.clock {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+.pointer {
+    position: absolute;
+    top: 0; left: 0;
+    width: 30%;
+    height: 100%;
+    margin-left: 24%;
+    display: block;
+    transform-origin: 13.636% 50%;
+    transition: transform 0.5s cubic-bezier(0.4, 2, .6, 1);
+}
+
+
+/* Responsive Button mit Text in Bild FÜR MENÜ*/
+.buttonImgFull-Menu {
+    position: relative;
+    display: inline-block;
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+    width: 180px;
+    height: 70px;
+}
+
+.buttonImgFull-Menu .button-unselected-Menu,
+.buttonImgFull-Menu .button-Hovered-Menu {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    transition: opacity 0.3s;
+    display: block;
+    z-index: 1;
+}
+
+.buttonImgFull-Menu .button-Hovered-Menu {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.buttonImgFull-Menu:hover .button-Hovered-Menu {
+    opacity: 1;
+}
+
+.buttonImgFull-Menu:hover .button-unselected-Menu {
+    opacity: 0;
+}
+
+.buttonImgFull-Menu .button-text-Menu {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    color: wheat;
+    font-weight: bold;
+    font-size: 1.1em;
+    text-align: center;
+    width: 90%;
+    pointer-events: none;
+    user-select: none;
+    white-space: normal;
+    z-index: 10;
+}
+
+.buttonImgFull-Menu .button-Selected-Menu {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 2;
+}
+.buttonImgFull-Menu.selected .button-Selected-Menu {
+    opacity: 1;
+}
+
+.clock-menu-btn-Start {
+    position: absolute;
+    top: 0%;    /* Bewegen der Button */
+    left: 55%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 160px;   /*Button Größe*/
+    height: 35px;
+}
+.clock-menu-btn-Hauptrechnung{
+    position: absolute;
+    top: 18%;    /* Bewegen der Button */
+    left: 80%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 160px;   /*Button Größe*/
+    height: 35px;
+}
+.clock-menu-btn-Projekte{
+    position: absolute;
+    top: 40%;    /* Bewegen der Button */
+    left: 90%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 160px;   /*Button Größe*/
+    height: 35px;
+}
+.clock-menu-btn-Vorlagen{
+    position: absolute;
+    top: 60%;    /* Bewegen der Button */
+    left: 90%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 160px;   /*Button Größe*/
+    height: 35px;
+}
+.clock-menu-btn-Mitarbeiter{
+    position: absolute;
+    top: 82%;    /* Bewegen der Button */
+    left: 80%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 160px;   /*Button Größe*/
+    height: 35px;
+}
+.clock-menu-btn-Einstellungen {
+    position: absolute;
+    top: 100%;    /* Bewegen der Button */
+    left: 55%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 160px;   /*Button Größe*/
+    height: 35px;
+}
+.button-text-Menu{
+    font-family: "Rye", serif;
+}
+
+
+
+
