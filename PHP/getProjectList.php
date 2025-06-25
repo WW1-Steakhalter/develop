@@ -30,12 +30,12 @@ SELECT
     ) AS gesamtkosten
 FROM projekte p
 LEFT JOIN projekt_mitarbeiter pm ON p.projekt_id = pm.projekt_id
-LEFT JOIN shk s ON pm.typ = 'shk' AND pm.mitarbeiter_id = s.mitarbeiter_id
-LEFT JOIN mitarbeiter m ON pm.typ = 'fest' AND pm.mitarbeiter_id = m.mitarbeiter_id
+LEFT JOIN shk s ON pm.mitarbeiter_id = s.mitarbeiter_id
+LEFT JOIN mitarbeiter m ON pm.mitarbeiter_id = m.mitarbeiter_id
 GROUP BY p.projekt_id
 ORDER BY p.name ASC
-
 ";
+
 
 $result = $conn->query($sql);
 
