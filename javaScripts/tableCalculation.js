@@ -31,11 +31,6 @@ function selectedEmployeeType (){
     });
 }
 
-function calculateWithIncludedAgShares (){
-
-
-}
-
 function submitEmployeeInputsToDb (){
     const data = new FormData();
 

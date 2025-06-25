@@ -6,22 +6,48 @@
     <ul id="project-list" class="project-list"></ul>
 </div>
 
-<div class="section-box">
+<div class="section-box" id="project-details-box">
     <h3>Projektkosten</h3>
+    <table id="projectTable">
+        <thead>
+        <tr>
+            <th>Projekt</th>
+            <th>Gesamtkosten</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <table id="mitarbeiterTabelle">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Typ</th>
+            <th>Kosten</th>
+        </tr>
+        </thead>
+        <tbody id="mitarbeiterTBody"></tbody>
+    </table>
 </div>
 
-<div class="section-box-projectView">
-    <div class="project-field">
-        <label for="project1">Projekt 1</label>
-        <input id="project1" name="project1" type="text">
+
+<div class="section-box" id="projektvergleich">
+    <div class="vergleichs-container">
+        <div class="vergleichs-block">
+            <label for="projekt1Select">Projekt 1</label>
+            <select id="projekt1Select" class="dropdown-style">
+                <option disabled selected>Projekt wählen</option>
+            </select>
+        </div>
+        <div class="vergleichs-block">
+            <label for="projekt2Select">Projekt 2</label>
+            <select id="projekt2Select" class="dropdown-style">
+                <option disabled selected>Projekt wählen</option>
+            </select>
+        </div>
     </div>
-    <div class="project-field">
-        <label for="project2">Projekt 2</label>
-        <input id="project2" name="project2" type="text">
-    </div>
+    <div id="vergleichsErgebnis" class="vergleichs-ausgabe"></div>
 </div>
-
-
-
 
 
