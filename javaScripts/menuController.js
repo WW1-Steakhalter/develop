@@ -21,6 +21,7 @@
         if (url === "HTML/employeePage.html") {
             initMitarbeiter();
             initAddEmployeePopup();
+            initScrollToTopButton();
         }
 
         })

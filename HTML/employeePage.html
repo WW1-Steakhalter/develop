@@ -2,9 +2,7 @@
 <link rel="stylesheet" href="../CSS/style.css" />
 <link rel="stylesheet" href="../CSS/employeePage.css" />
 
-<script src="../javaScripts/mitarbeiter.js"></script>
 <div class="containerEmployeePage">
-    <div class="containerEmployeePage">
 
         <div class="top-bar">
             <button id="addEmployeeBtn" class="employee-button global-button">+ Mitarbeiter hinzufügen</button>
@@ -17,7 +15,6 @@
 
             <div id="employeeDetails" class="employee-details"></div>
         </div>
-    </div>
 </div>
 
 <div id="employeeModal" class="modal hidden">
@@ -25,14 +22,19 @@
         <h2>Neuer Mitarbeiter</h2>
         <div class="input-box-employeeInputs">
             <div class="inputfield"><label>Name:</label><input type="text" id="newName"></div>
-            <div class="inputfield"><label>Nachname:</label><input type="text" id="newNachname"></div>
             <div class="inputfield"><label>Personalnummer:</label><input type="text" id="newPersonalnummer"></div>
             <div class="inputfield"><label>Abteilung/Team:</label><input type="text" id="newAbteilung"></div>
             <div class="inputfield"><label>Position/Jobtitel:</label><input type="text" id="newPosition"></div>
+            <div class="inputfield"><label>Gesamtkosten:</label><input type="text" id="newKosten"></div>
         </div>
         <button id="saveEmployeeBtn">Speichern</button>
         <button id="closeModalBtn">Abbrechen</button>
     </div>
-
-    <button id="backToTopBtn" title="Nach oben">↑</button>
 </div>
+
+<button id="scrollTopBtn" class="scroll-top-button hidden">
+    <img src="../imgtemp/ButtonArrowUp.svg" alt="Nach oben" />
+</button>
+
+<script src="../javaScripts/mitarbeiter.js"></script>
+
