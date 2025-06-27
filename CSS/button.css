@@ -72,36 +72,34 @@
 /*Clockmenu*/
 
 .clock-container {
-    position: fixed;
-    top: 30%;
-    left: 0;
-    width: 21.5vw;
+    position: relative;
+    size: cover;
+    width: 100%;
     height: 21.5vw;
-    max-width: 300px;
-    max-height: 400px;
-    margin-left: 0;
-    padding-left: 0;
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
     z-index: 1000;
-    
-    margin-left: -3.2%;
-    padding-left: -10%;
-    
+    left: -24%;
+    top: 16%; 
 }
 
 .clock {
-    position: absolute;
+    position: fixed;
     top: 0; left: 0;
-    width: 100%;
+    width: 13%;
     height: 100%;
     display: block;
+    margin-left: 0;
 }
 .pointer {
-    position: absolute;
+    position: fixed;
     top: 0; left: 0;
-    width: 30%;
+    width: 7%;
     height: 100%;
-    margin-left: 24%;
+    margin-left: 1%;
     display: block;
     transform-origin: 13.636% 50%;
     transition: transform 0.5s cubic-bezier(0.4, 2, .6, 1);
@@ -109,29 +107,13 @@
 
 
 /*NÖTIG für reltive Größe für Uhr*/
-.buttonImgFull-Menu,
-.clock-menu-btn-Start,
-.clock-menu-btn-Hauptrechnung,
-.clock-menu-btn-Projekte,
-.clock-menu-btn-Mitarbeiter,
-.clock-menu-btn-Einstellungen {
-    max-width: 260px;    /* Buttons nicht breiter als Sidebar */
-    width: 90%;
-    left: 50%;          /* zentriert innerhalb des Containers */
-    transform: translate(-50%, -50%);
-}
 
-/* Passe die left- und top-Werte ggf. für die Buttons an, damit sie nicht überstehen */
-.clock-menu-btn-Start        { left: 50%; }
-.clock-menu-btn-Hauptrechnung{ left: 50%; }
-.clock-menu-btn-Projekte     { left: 50%; }
-.clock-menu-btn-Mitarbeiter  { left: 50%; }
-.clock-menu-btn-Einstellungen{ left: 50%; }
+
 
 
 /* Responsive Button mit Text in Bild FÜR MENÜ*/
 .buttonImgFull-Menu {
-    position: relative;
+    position: absolute;
     display: inline-block;
     border: none;
     background: none;
@@ -170,7 +152,7 @@
     transform: translate(-50%, -50%);
     color: wheat;
     font-weight: bold;
-    font-size: 1.1em;
+    font-size: 1.0vw;
     text-align: center;
     width: 90%;
     pointer-events: none;
@@ -193,49 +175,46 @@
 }
 
 .clock-menu-btn-Start {
-    position: absolute;
-    top: 0%;    /* Bewegen der Button */
-    left: 60%;
+    position: fixed;
+    top: 27%;    /* Bewegen der Button */
+    left: 8%;
     transform: translate(-50%, -50%);
     z-index: 2;
-    width: 160px;   /*Button Größe*/
-    height: 35px;
+    width: 10.5%;    /*Button Größe*/
+    
 }
 .clock-menu-btn-Hauptrechnung{
-    position: absolute;
-    top: 22%;    /* Bewegen der Button */
-    left: 90%;
+    position: fixed;
+    top: 36%;    /* Bewegen der Button */
+    left: 14%;
     transform: translate(-50%, -50%);
     z-index: 2;
-    width: 160px;   /*Button Größe*/
-    height: 35px;
+    width: 10.5%;   /*Button Größe*/
 }
 .clock-menu-btn-Projekte{
-    position: absolute;
+    position: fixed;
     top: 50%;    /* Bewegen der Button */
-    left: 100%;
+    left: 16.5%;
     transform: translate(-50%, -50%);
     z-index: 2;
-    width: 160px;   /*Button Größe*/
-    height: 35px;
+    width: 10.5%;    /*Button Größe*/
+    
 }
 .clock-menu-btn-Mitarbeiter{
-    position: absolute;
-    top: 78%;    /* Bewegen der Button */
-    left: 90%;
+    position: fixed;
+    top: 64%;    /* Bewegen der Button */
+    left: 14%;
     transform: translate(-50%, -50%);
     z-index: 2;
-    width: 160px;   /*Button Größe*/
-    height: 35px;
+    width: 10.5%;    /*Button Größe*/
 }
 .clock-menu-btn-Einstellungen {
-    position: absolute;
-    top: 100%;    /* Bewegen der Button */
-    left: 60%;
+    position: fixed;
+    top: 73%;    /* Bewegen der Button */
+    left: 8%;
     transform: translate(-50%, -50%);
     z-index: 2;
-    width: 160px;   /*Button Größe*/
-    height: 35px;
+    width: 10.5%;    /*Button Größe*/
 }
 .button-text-Menu{
     font-family: "Courier Prime", monospace;
@@ -249,6 +228,31 @@
     flex-direction: column;
     justify-content: left;
     align-items: left;
+}
+
+
+/*Lightmodebutton*/
+.lightMode-Button {
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+.darkMode-Button {
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+.button-unselected-Menu,
+.button-Hovered-Menu,
+.button-Selected-Menu {
+    transition: all ease 1s;
 }
 
 

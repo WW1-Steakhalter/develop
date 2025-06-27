@@ -3,11 +3,12 @@
 .settings-container {
     max-width: 800px;
     margin: 40px auto 0 auto;
-    background: #23272a;
+    background: var(--primary-sectionbox-bg-color);
     border-radius: 12px;
     box-shadow: 0 4px 24px rgba(0,0,0,0.25);
     padding: 28px 28px 20px 28px;
-    border: 1px solid Gold;
+    border: var(--primary-border-color);
+    transition: all ease 0.5s;
 }
 
 .settings-title {
@@ -39,7 +40,7 @@
 }
 
 .settings-hint {
-    color: #aaa;
+    color: var(--hint-color);
     font-size: 0.95rem;
     margin-top: 8px;
 }
