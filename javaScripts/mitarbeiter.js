@@ -1,45 +1,57 @@
-document.addEventListener("DOMContentLoaded", () => {
-    initMitarbeiter();
-    initAddEmployeePopup();
-});
+function initEmployeePage() {
+    fetch('/PHP/getEmployeeList.php')
+        .then(res => res.text())
+        .then(text => {
+            try {
+                const data = JSON.parse(text);
+                if (data.error) {
+                    console.error(data.error);
+                    return;
+                }
 
-const mitarbeiterListe = [
-    { name: "Cansu Güler", personalnummer: "01", abteilung: "Managment", position: "Teamchef", kosten: 3000 },
-    { name: "Finn Thiele", personalnummer: "02", abteilung: "Managment", position: "Projektmanager", kosten: 2950},
-    { name: "Nicolas Kunze", personalnummer: "03", abteilung: "Programmierer", position: "Chefprogrammierer" , kosten: 4000},
-    { name: "Yannik Hunger", personalnummer: "04", abteilung: "Programmierer", position: "Softwarearchitekt" , kosten: 3500},
-    { name: "Andreas Herti", personalnummer: "05", abteilung: "Programmierer", position: "Softwarearchitekt" , kosten: 2500},
-    { name: "Elias Hörmann", personalnummer: "06", abteilung: "Design", position: "Creative Content Design" , kosten: 5000},
-    { name: "Nele Muhr", personalnummer: "07", abteilung: "Design", position: "Creative Content Design" , kosten: 3200},
-    { name: "Angelina Gerlach", personalnummer: "08", abteilung: "Design", position: "Usability/UX" , kosten: 4320},
-    { name: "Pascal Hänsch", personalnummer: "09", abteilung: "Stakeholder", position: "Stakeholder" , kosten: 3340}
-];
+                const mitarbeiterListe = [...data.mitarbeiter, ...data.shk].filter(m => m && m.id);
+                console.log("Gültige Mitarbeiter:", mitarbeiterListe);
 
-function initMitarbeiter() {
+                renderEmployeeInterface(mitarbeiterListe);
+            } catch (e) {
+                console.error("Ungültige JSON-Antwort:", text);
+                console.error(e);
+            }
+        })
+        .catch(err => console.error("Fehler beim Laden der Daten:", err));
 
-    const listContainer = document.getElementById("employeeList");
+    initScrollToTopButton();
+}
+
+function renderEmployeeInterface(mitarbeiterListe) {
+    const listContainer = document.getElementById("employeeButtons");
     const detailContainer = document.getElementById("employeeDetails");
+    const searchInput = document.getElementById("searchInput");
 
-    listContainer.innerHTML = "";
+    const mitarbeiter = mitarbeiterListe.filter(m => m.typ === "Mitarbeiter");
+    const shks = mitarbeiterListe.filter(m => m.typ === "SHK");
 
-    const searchInput = document.createElement("input");
-    searchInput.id = "searchInput";
-    searchInput.className = "search-input";
-    searchInput.placeholder = "Suche nach Name, Personalnummer oder Abteilung...";
-    listContainer.appendChild(searchInput);
+    function createList(title, data) {
+        const section = document.createElement("div");
+        section.classList.add("employee-section");
 
-    const listWrapper = document.createElement("div");
-    listWrapper.id = "employeeButtons";
-    listContainer.appendChild(listWrapper);
+        const headline = document.createElement("h3");
+        headline.textContent = title;
+        section.appendChild(headline);
 
-    function renderList(filteredList) {
-        listWrapper.innerHTML = "";
-        filteredList.forEach(m => {
+        data.forEach(m => {
+            if (!m || !m.id) {
+                console.warn("Überspringe ungültigen Eintrag:", m);
+                return;
+            }
+
             const btn = document.createElement("button");
             btn.className = "employee-button";
-            btn.textContent = `${m.name}`;
+            if (m.typ === "SHK") btn.classList.add("shk");
+            btn.textContent = m.name;
+
             btn.addEventListener("click", (e) => {
-                const cardId = `card-${m.personalnummer}`;
+                const cardId = `card-${m.id}`;
                 const existingCard = document.getElementById(cardId);
 
                 if (existingCard) {
@@ -49,99 +61,99 @@ function initMitarbeiter() {
                 }
 
                 if (!e.shiftKey) {
-                    const allCards = detailContainer.querySelectorAll(".employee-card");
-                    allCards.forEach(card => card.remove());
-
-                    const allButtons = listWrapper.querySelectorAll(".employee-button");
-                    allButtons.forEach(b => b.classList.remove("active"));
+                    detailContainer.innerHTML = "";
+                    document.querySelectorAll(".employee-button").forEach(b => b.classList.remove("active"));
                 }
 
                 const card = createEmployeeCard(m);
                 detailContainer.appendChild(card);
                 btn.classList.add("active");
             });
-            listWrapper.appendChild(btn);
+
+            section.appendChild(btn);
         });
+
+        return section;
     }
 
-    renderList(mitarbeiterListe);
+    function renderAll(filteredList) {
+        listContainer.innerHTML = "";
 
-    searchInput.addEventListener("input", () => {
-        const query = searchInput.value.toLowerCase();
-        const filtered = mitarbeiterListe.filter(m =>
-            `${m.name}`.toLowerCase().includes(query) ||
-            m.personalnummer.includes(query) ||
-            m.abteilung.toLowerCase().includes(query)
-        );
-        renderList(filtered);
-    });
+        const mitarbeiter = filteredList.filter(m => m.typ === "Mitarbeiter");
+        const shks = filteredList.filter(m => m.typ === "SHK");
+
+        if (mitarbeiter.length > 0) {
+            listContainer.appendChild(createList("Mitarbeiter", mitarbeiter));
+        }
+        if (shks.length > 0) {
+            listContainer.appendChild(createList("SHK", shks));
+        }
+    }
+
+
+    renderAll(mitarbeiterListe);
+
+    if (searchInput) {
+        searchInput.addEventListener("input", () => {
+            const query = (searchInput.value || "").toLowerCase();
+
+            const filtered = mitarbeiterListe.filter(m =>
+                (m.name || "").toLowerCase().includes(query) ||
+                (m.mitarbeiter_id || "").toString().toLowerCase().includes(query) ||
+                (m.typ || "").toLowerCase().includes(query)
+            );
+
+            console.log("Suchbegriff:", query);
+            console.log("Treffer:", filtered.map(f => f.name));
+            renderAll(filtered);
+        });
+    } else {
+        console.warn("searchInput nicht gefunden!");
+    }
+
 }
 
 function createEmployeeCard(m) {
-    const card = document.createElement("div");
-    card.id = `card-${m.personalnummer}`;
-    card.className = "employee-card";
-    card.innerHTML = `
-        <h3>${m.name} ${m.nachname}</h3>
-        <div class="input-box-employeeInputs">
-            <div class="inputfield"><label>Name:</label><input type="text" value="${m.name}"></div>
-            <div class="inputfield"><label>Personalnummer:</label><input type="text" value="${m.personalnummer}"></div>
-            <div class="inputfield"><label>Abteilung/Team:</label><input type="text" value="${m.abteilung}"></div>
-            <div class="inputfield"><label>Position/Jobtitel:</label><input type="text" value="${m.position}"></div>
-            <div class="inputfield"><label>Gesamtkosten:</label><input type="text" value="${m.kosten}"></div>
-        </div>
-    `;
-    return card;
-}
-
-function initAddEmployeePopup() {
-    const modal = document.getElementById("employeeModal");
-    const openBtn = document.getElementById("addEmployeeBtn");
-    const closeBtn = document.getElementById("closeModalBtn");
-    const saveBtn = document.getElementById("saveEmployeeBtn");
-
-    openBtn.addEventListener("click", () => {
-        modal.classList.remove("hidden");
-    });
-
-    closeBtn.addEventListener("click", () => {
-        modal.classList.add("hidden");
-        clearModalInputs();
-    });
-
-    saveBtn.addEventListener("click", () => {
-        const newMitarbeiter = {
-            name: document.getElementById("newName").value.trim(),
-            personalnummer: document.getElementById("newPersonalnummer").value.trim(),
-            abteilung: document.getElementById("newAbteilung").value.trim(),
-            position: document.getElementById("newPosition").value.trim(),
-            kosten: document.getElementById("newKosten").value.trim()
-        };
-
-        if (!newMitarbeiter.name || !newMitarbeiter.personalnummer) {
-            alert("Bitte mindestens Name, Nachname und Personalnummer angeben.");
-            return;
-        }
-
-        if (mitarbeiterListe.some(m => m.personalnummer === newMitarbeiter.personalnummer)) {
-            alert("Diese Personalnummer existiert bereits.");
-            return;
-        }
-
-        mitarbeiterListe.push(newMitarbeiter);
-        modal.classList.add("hidden");
-        clearModalInputs();
-        initMitarbeiter();
-    });
-
-    function clearModalInputs() {
-        document.getElementById("newName").value = "";
-        document.getElementById("newPersonalnummer").value = "";
-        document.getElementById("newAbteilung").value = "";
-        document.getElementById("newPosition").value = "";
-        document.getElementById("newKosten").value = "";
+    if (!m || !m.id) {
+        console.warn("Ungültiges Mitarbeiterobjekt in createEmployeeCard:", m);
+        return document.createElement("div");
     }
 
+    const card = document.createElement("div");
+    card.id = `card-${m.id}`;
+    card.className = "employee-card";
+    if (m.typ === "SHK") card.classList.add("shk");
+
+    const commonInfo = `
+        <h3>${m.name}</h3>
+        <div class="input-box-employeeInputs">
+            <div class="inputfield"><label>Typ:</label><input type="text" value="${m.typ}" readonly></div>
+            <div class="inputfield"><label>Personalnummer:</label><input type="text" value="${m.mitarbeiter_id}" readonly></div>
+            <div class="inputfield"><label>Wochenstunden:</label><input type="text" value="${m.wochenstunden || m.hoursPerWeek || ''}" readonly></div>
+    `;
+
+    let spezifisch = "";
+
+    if (m.typ === "Mitarbeiter") {
+        const brutto = (parseFloat(m.brutto_bis_10_2024) || 0) + (parseFloat(m.brutto_ab_11_2024) || 0);
+        const jsz = (parseFloat(m.jsz_2024_bis_10_2024) || 0) + (parseFloat(m.jsz_2024_ab_11_2024) || 0);
+
+        spezifisch += `
+            <div class="inputfield"><label>Entgeltgruppe:</label><input type="text" value="${m.entgeltgruppe || ''}" readonly></div>
+            <div class="inputfield"><label>Brutto 2024:</label><input type="text" value="${brutto.toFixed(2)} €" readonly></div>
+            <div class="inputfield"><label>JSZ 2024:</label><input type="text" value="${jsz.toFixed(2)} €" readonly></div>
+            <div class="inputfield"><label>Gesamtsumme:</label><input type="text" value="${m.gesamtsumme || ''} €" readonly></div>
+        `;
+    } else {
+        spezifisch += `
+            <div class="inputfield"><label>SHK-Typ:</label><input type="text" value="${m.workingType02 || ''}" readonly></div>
+            <div class="inputfield"><label>Stundenlohn:</label><input type="text" value="${m.salary || ''} €" readonly></div>
+            <div class="inputfield"><label>Gesamtkosten:</label><input type="text" value="${m.shkEmployeeSum || ''} €" readonly></div>
+        `;
+    }
+
+    card.innerHTML = commonInfo + spezifisch + `</div>`;
+    return card;
 }
 
 function initScrollToTopButton() {
@@ -149,14 +161,14 @@ function initScrollToTopButton() {
     if (!scrollBtn) return;
 
     window.addEventListener("scroll", () => {
-        if (window.scrollY > 300) {
-            scrollBtn.classList.remove("hidden");
-        } else {
-            scrollBtn.classList.add("hidden");
-        }
+        scrollBtn.classList.toggle("hidden", window.scrollY <= 300);
     });
 
     scrollBtn.addEventListener("click", () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     });
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    initEmployeePage();
+});

@@ -14,10 +14,10 @@
 .employee-list {
     max-height: 80vh;
     overflow-y: auto;
-    background-color: #1e1e1e;
+    background-color: #1a1a1a;
     padding: 1rem;
-    border: 1px solid #444;
-    border-radius: 8px;
+    border: 2px solid #444;
+    border-radius: 12px;
     color: white;
 }
 
@@ -29,24 +29,26 @@
     border: 1px solid #888;
     background-color: #2a2a2a;
     color: white;
+    box-sizing: border-box;
 }
 
 .employee-button {
     display: block;
     width: 100%;
     padding: 10px;
-    background-color: #1e1e1e;
+    background-color: #1a1a1a;
     color: white;
-    border: 1px solid #444;
+    border: 1px solid #555;
     border-radius: 6px;
     margin-bottom: 0.5rem;
     text-align: left;
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: background-color 0.2s, border-color 0.2s;
 }
 
 .employee-button:hover {
     background-color: #2a2a2a;
+    border-color: gold;
 }
 
 .employee-button.active {
@@ -55,33 +57,53 @@
     font-weight: bold;
 }
 
-.employee-details {
-    background-color: #2c2c2c;
-    padding: 1.5rem;
-    border: 1px solid gold;
-    border-radius: 12px;
+.employee-button.shk {
+    background-color: #1a1a1a;
+    border: 1px solid #555;
     color: white;
 }
 
-.search-input {
-    box-sizing: border-box;
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 1rem;
-    border-radius: 6px;
-    border: 1px solid #888;
+.employee-button.shk:hover {
     background-color: #2a2a2a;
+    border-color: gold;
+}
+
+.employee-button.shk.active {
+    background-color: gold;
+    color: black;
+    font-weight: bold;
+}
+
+.employee-button:empty {
+    display: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    background: none !important;
+}
+
+.employee-details {
+    min-height: 200px;
+    background-color: #1a1a1a;
+    border: 2px solid gold;
+    border-radius: 12px;
+    padding: 1.5rem;
     color: white;
 }
 
-.employee-card {
-    background-color: #2c2c2c;
+.employee-card,
+.employee-card.shk {
+    background-color: #1a1a1a;
     border: 2px solid #474747;
     border-radius: 12px;
     padding: 1.5rem;
     margin-bottom: 1rem;
     color: white;
     transition: transform 0.2s;
+}
+
+.employee-card.shk h3::after {
+    content: "";
 }
 
 .modal {
@@ -183,4 +205,17 @@
     pointer-events: none;
 }
 
+.section-title {
+    font-size: 1.8rem;
+    color: white;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid gold;
+    padding-bottom: 0.5rem;
+}
 
+.bordered-box {
+    border: 2px solid gold;
+    border-radius: 12px;
+    padding: 1rem;
+    background-color: #1a1a1a;
+}
