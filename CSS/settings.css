@@ -163,8 +163,8 @@
 
 /*Design Cog*/
 .settings-cog{
-    position: absolute;
-    top: 30px;
+    position: reltive;
+    top: 0px;
     right: 52px;
     width: 68px;
     height: 68px;

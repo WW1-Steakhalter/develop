@@ -84,9 +84,35 @@
     </div>
 </div>
     <div class="section-box">
-        <button type="button" onclick = "rechnen_SHK_WHK()">Rechnen</button>
-        <button type="reset">Löschen</button>
-        <button type="button" onClick="submitShkInputsToDb()">Mitarbeiter speichern</button>
-        <button type="button">zu Projekt hinzufügen</button>
+        <div class = "input-box">
+        <div class = "inputfield-button">
+            <button type="button" class="buttonImgFull" onclick="rechnen_SHK_WHK()">
+                <span class = "button-text" >Rechnen</span>
+                <img class = "button-unselected" src="img/ButtonUnselected.svg" alt="Rechnen" title="Rechnen">
+                <img class = "button-Hovered" src="img/ButtonHovered.svg" alt="Rechnen" title="Rechnen">
+            </button>
+        </div>
+        <div class = "inputfield-button">
+            <button type="button" class="buttonImgFull">
+                <span class = "button-text" >Löschen</span>
+                <img class = "button-unselected" src="img/ButtonUnselected.svg" alt="Löschen" title="Löschen">
+                <img class = "button-Hovered" src="img/ButtonHovered.svg" alt="Löschen" title="Löschen">
+            </button>
+        </div>
+        <div class = "inputfield-button">
+            <button type="button" class="buttonImgFull" onclick="submitEmployeeInputsToDb()">
+                <span class = "button-text" >Mitarbeiter speichern</span>
+                <img class = "button-unselected" src="img/ButtonUnselected.svg" alt="Mitarbeiter hinzufügen" title="Mitarbeiter hinzufügen">
+                <img class = "button-Hovered" src="img/ButtonHovered.svg" alt="Mitarbeiter hinzufügen" title="Mitarbeiter hinzufügen">
+            </button>
+        </div>
+        <div class="inputfield-button">
+            <button type="button" class="buttonImgFull" onclick="submitEmployeeInputsToDbAndAddToProject()">
+                <span class = "button-text" >Zu Projekt hinzufügen</span>
+                <img class = "button-unselected" src="img/ButtonUnselected.svg" alt="Zu Projekt hinzufügen" title="Zu Projekt hinzufügen">
+                <img class = "button-Hovered" src="img/ButtonHovered.svg" alt="Zu Projekt hinzufügen" title="Zu Projekt hinzufügen">
+            </button>
+        </div>
+    </div>
     </div>
 </form>

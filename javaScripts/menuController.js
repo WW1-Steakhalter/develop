@@ -22,11 +22,22 @@
             initMitarbeiter();
         }
 
+        const currentTheme = document.documentElement.getAttribute('theme') || 'dark';
+        if (typeof switchButtonImagesForTheme === 'function') {
+            switchButtonImagesForTheme(currentTheme);
+        }
+
+
         })
         .catch(error => {
             document.getElementById("main-content").innerHTML = "<p>Seite konnte nicht geladen werden.</p>";
             console.error(error);
         });
+
+
+
+
+        
 
 }
 

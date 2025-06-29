@@ -252,8 +252,11 @@
 .button-unselected-Menu,
 .button-Hovered-Menu,
 .button-Selected-Menu {
-    transition: all ease 1s;
+    transition: opacity 1s;
+    opacity: 1;
 }
-
+.button-img-fade{
+    opacity: 0.1;
+}
 
 
