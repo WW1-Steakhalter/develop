@@ -220,13 +220,7 @@ function OutputGesamtSumme(){
     document.getElementById("gesamtsumme").value = GesamtSumme().toFixed(2);
 }
 
-// Event-Listener für den Seitenaufruf
-/*function afterMainPageLoad() {
-    OutputBrutto();
-    OutputJSZ();
-    OutputJahressumme();
-    OutputGesamtSumme();
-}*/
+
 
 //Brutto-Berechnungen für 2024 bis 2027
 function OutputBrutto2024_bis_10_2024(){

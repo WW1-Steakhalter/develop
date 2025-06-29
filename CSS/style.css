@@ -6,6 +6,9 @@ html{
     --primary-sectionbox-bg-color: #2c2c2c;
     --primary-border-color: 1px solid gold;
     --hint-color: #aaa;
+    --primary-headline-color: White;
+    --primary-button-text-color: wheat;
+    --menu-font: gold;
 
 }
 html[theme = "light"]{
@@ -15,6 +18,9 @@ html[theme = "light"]{
     --primary-sectionbox-bg-color: #C0B29E;
     --primary-border-color: 2px solid black;
     --hint-color: #707070;
+    --primary-headline-color: #924a2a;
+    --primary-button-text-color: wheat;
+    --menu-font: #924a2a;
 }
 html[theme = "dark"]{
     --primary-bg-color: #1e1e1e;
@@ -23,7 +29,14 @@ html[theme = "dark"]{
     --primary-sectionbox-bg-color: #2c2c2c;
     --primary-border-color: 1px solid gold;
     --hint-color: #aaa;
+    --primary-headline-color: White;
+    --primary-button-text-color: wheat;
+    --menu-font: gold;
 
+}
+
+h1, h2{
+    color: var(--primary-headline-color);
 }
 
 
@@ -72,7 +85,7 @@ body, html {
     background-color: #7289da;
 }
 .Menu-label {
-    color: Gold;
+    color: var(--menu-font);
     position: relative;
     font-size: 1.5rem;
     text-align: center;
