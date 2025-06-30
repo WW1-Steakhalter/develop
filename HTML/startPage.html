@@ -2,7 +2,7 @@
 
 
     <div class="start-box">
-        <h3> Herzlich willkommen auf unserer Website! </h3>
+        <h3 class = "Start-headline"> Herzlich willkommen auf unserer Website! </h3>
         Hier stehen Ihnen vielfältige Funktionen zur Projektkosten-Kalkulation zur Verfügung, <br/>
         mit denen Sie Ihre Ausgaben immer im Blick behalten können. <br/> <br/>
         Nutzen Sie die Seite „Hauptrechnung“, um neue Projekte oder Mitarbeitervorlagen anzulegen und intern <br/>
@@ -19,7 +19,16 @@
     </div>
 </div>
 
-<button id="impressum-button" onclick="loadPage('HTML/Impressum.html')">Impressum</button>
+
+    <div class="inputfield-button">
+        <button id = "impressum-button" type="button" class="buttonImgFull" onclick="loadPage('HTML/Impressum.html')">
+            <span class = "button-text" >Impressum</span>
+            <img class = "button-unselected" src="img/ButtonUnselected.svg" alt="Impressum" title="Impressum">
+            <img class = "button-Hovered" src="img/ButtonHovered.svg" alt="Impressum" title="Impressum">
+        </button>
+    </div>
+
+<!--<button id="impressum-button" onclick="loadPage('HTML/Impressum.html')">Impressum</button>-->
 <!--<div>
     <video class = "animation" src="Animation/0001-0200.mkv" autoplay loop playsinline>Animation</video>
 </div>-->
