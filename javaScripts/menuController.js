@@ -28,11 +28,19 @@ function loadPage(url) {
                 });
             }
 
+
+        const currentTheme = document.documentElement.getAttribute('theme') || 'dark';
+        if (typeof switchButtonImagesForTheme === 'function') {
+            switchButtonImagesForTheme(currentTheme);
+        }
+
+
             if (url === "HTML/projectPage.html") {
                 if (typeof loadProjectData === "function") {
                     loadProjectData();
                 }
             }
+
         })
         .catch(error => {
             document.getElementById("main-content").innerHTML = "<p>Seite konnte nicht geladen werden.</p>";

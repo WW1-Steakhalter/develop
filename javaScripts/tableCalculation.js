@@ -117,3 +117,7 @@ function submitShkInputsToDb (){
         .catch(err => alert("Fehler beim Senden: " + err)
         );
 }
+
+
+// Rechnungen 
+
