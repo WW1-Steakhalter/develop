@@ -20,6 +20,7 @@ $conn->set_charset("utf8mb4");
 
 $sql = "
 SELECT 
+    p.projekt_id,
     p.name AS projektname,
     SUM(
         CASE 
@@ -34,6 +35,7 @@ LEFT JOIN shk s ON pm.mitarbeiter_id = s.mitarbeiter_id
 LEFT JOIN mitarbeiter m ON pm.mitarbeiter_id = m.mitarbeiter_id
 GROUP BY p.projekt_id
 ORDER BY p.name ASC
+
 ";
 
 
