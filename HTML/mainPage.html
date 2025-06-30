@@ -189,7 +189,7 @@
             </button>
         </div>
         <div class="inputfield-button">
-            <button type="button" class="buttonImgFull" onclick="submitEmployeeInputsToDbAndAddToProject()">
+            <button type="button" class="buttonImgFull" onclick="openProjektModal()">
                 <span class = "button-text" >Zu Projekt hinzufügen</span>
                 <img class = "button-unselected" src="img/ButtonUnselected.svg" alt="Zu Projekt hinzufügen" title="Zu Projekt hinzufügen">
                 <img class = "button-Hovered" src="img/ButtonHovered.svg" alt="Zu Projekt hinzufügen" title="Zu Projekt hinzufügen">
@@ -197,4 +197,13 @@
         </div>
     </div>
 </div>
+    <div id="projektModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h3>Projekt auswählen</h3>
+            <ul id="projektListe"></ul>
+            <button onclick="closeProjektModal()">Abbrechen</button>
+        </div>
+    </div>
 </form>
+
+

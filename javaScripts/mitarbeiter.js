@@ -1,186 +1,174 @@
-document.addEventListener("DOMContentLoaded", () => {
-    initMitarbeiter();
-});
+function initEmployeePage() {
+    fetch('/PHP/getEmployeeList.php')
+        .then(res => res.text())
+        .then(text => {
+            try {
+                const data = JSON.parse(text);
+                if (data.error) {
+                    console.error(data.error);
+                    return;
+                }
 
-const mitarbeiterListe = [
-    {
-        name: "Cansu",
-        nachname: "Güler",
-        personalnummer: "01",
-        abteilung: "Managment",
-        position: "Teamchef",
-        eintrittsdatum: "2025-03-26",
-        stundenlohn: "20",
-        urlaubsanspruch: "30",
-        arbeitszeitmodell: "Teilzeit"
-    },
-    {
-        name: "Finn",
-        nachname: "Thiele",
-        personalnummer: "02",
-        abteilung: "Managment",
-        position: "Projektmanager",
-        eintrittsdatum: "2025-03-24",
-        stundenlohn: "20",
-        urlaubsanspruch: "30",
-        arbeitszeitmodell: "Teilzeit"
-    },
-    {
-        name: "Nicolas",
-        nachname: "Kunze",
-        personalnummer: "03",
-        abteilung: "Programmierer",
-        position: "Chefprogrammierer",
-        eintrittsdatum: "2025-03-25",
-        stundenlohn: "20",
-        urlaubsanspruch: "30",
-        arbeitszeitmodell: "Teilzeit"
-    },
-    {
-        name: "Yannik",
-        nachname: "Hunger",
-        personalnummer: "04",
-        abteilung: "Programmierer",
-        position: "Softwarearchitekt",
-        eintrittsdatum: "2025-03-25",
-        stundenlohn: "20",
-        urlaubsanspruch: "30",
-        arbeitszeitmodell: "Teilzeit"
-    },
-    {
-        name: "Andreas",
-        nachname: "Herti",
-        personalnummer: "05",
-        abteilung: "Programmierer",
-        position: "Softwarearchitekt",
-        eintrittsdatum: "2025-03-25",
-        stundenlohn: "20",
-        urlaubsanspruch: "30",
-        arbeitszeitmodell: "Teilzeit"
-    },
-    {
-        name: "Elias",
-        nachname: "Hörmann",
-        personalnummer: "06",
-        abteilung: "Design",
-        position: "Creative Content Design",
-        eintrittsdatum: "2025-03-25",
-        stundenlohn: "20",
-        urlaubsanspruch: "30",
-        arbeitszeitmodell: "Teilzeit"
-    },
-    {
-        name: "Nele",
-        nachname: "Muhr",
-        personalnummer: "07",
-        abteilung: "Design",
-        position: "Creative Content Design",
-        eintrittsdatum: "2025-03-25",
-        stundenlohn: "20",
-        urlaubsanspruch: "30",
-        arbeitszeitmodell: "Teilzeit"
-    },
-    {
-        name: "Angelina",
-        nachname: "Gerlach",
-        personalnummer: "08",
-        abteilung: "Design",
-        position: "Usability/UX",
-        eintrittsdatum: "2025-03-25",
-        stundenlohn: "20",
-        urlaubsanspruch: "30",
-        arbeitszeitmodell: "Teilzeit"
-    },
-    {
-        name: "Pascal",
-        nachname: "Hänsch",
-        personalnummer: "09",
-        abteilung: "Stakeholder",
-        position: "Stakeholder",
-        eintrittsdatum: "2025-03-25",
-        stundenlohn: "20",
-        urlaubsanspruch: "30",
-        arbeitszeitmodell: "Teilzeit"
-    },
+                const mitarbeiterListe = [...data.mitarbeiter, ...data.shk].filter(m => m && m.id);
+                console.log("Gültige Mitarbeiter:", mitarbeiterListe);
 
-];
+                renderEmployeeInterface(mitarbeiterListe);
+            } catch (e) {
+                console.error("Ungültige JSON-Antwort:", text);
+                console.error(e);
+            }
+        })
+        .catch(err => console.error("Fehler beim Laden der Daten:", err));
 
-function initMitarbeiter() {
-    console.log("initMitarbeiter gestartet");
-
-    initMitarbeiterListe();
-    ScrollToTopButton();
+    initScrollToTopButton();
 }
 
-function initMitarbeiterListe() {
-    const listContainer = document.getElementById("employeeList");
+function renderEmployeeInterface(mitarbeiterListe) {
+    const listContainer = document.getElementById("employeeButtons");
     const detailContainer = document.getElementById("employeeDetails");
+    const searchInput = document.getElementById("searchInput");
 
-    if (!listContainer || !detailContainer) {
-        console.warn("Container nicht gefunden");
-        return;
-    }
+    const mitarbeiter = mitarbeiterListe.filter(m => m.typ === "Mitarbeiter");
+    const shks = mitarbeiterListe.filter(m => m.typ === "SHK");
 
-    mitarbeiterListe.forEach((m, index) => {
-        const btn = document.createElement("button");
-        btn.classList.add("employee-button");
-        btn.textContent = `${m.name} ${m.nachname}`;
+    function createList(title, data) {
+        const section = document.createElement("div");
+        section.classList.add("employee-section");
 
-        btn.addEventListener("click", (event) => {
-            const isMultiSelect = event.altKey;
+        const headline = document.createElement("h3");
+        headline.textContent = title;
+        section.appendChild(headline);
 
-            if (!isMultiSelect) {
-
-                document.querySelectorAll(".employee-button").forEach(b => b.classList.remove("active"));
-                detailContainer.innerHTML = "";
+        data.forEach(m => {
+            if (!m || !m.id) {
+                console.warn("Überspringe ungültigen Eintrag:", m);
+                return;
             }
 
-            btn.classList.add("active");
+            const btn = document.createElement("button");
+            btn.className = "employee-button";
+            if (m.typ === "SHK") btn.classList.add("shk");
+            btn.textContent = m.name;
 
-            const card = createEmployeeCard(m);
-            detailContainer.appendChild(card);
+            btn.addEventListener("click", (e) => {
+                const cardId = `card-${m.id}`;
+                const existingCard = document.getElementById(cardId);
+
+                if (existingCard) {
+                    existingCard.remove();
+                    btn.classList.remove("active");
+                    return;
+                }
+
+                if (!e.shiftKey) {
+                    detailContainer.innerHTML = "";
+                    document.querySelectorAll(".employee-button").forEach(b => b.classList.remove("active"));
+                }
+
+                const card = createEmployeeCard(m);
+                detailContainer.appendChild(card);
+                btn.classList.add("active");
+            });
+
+            section.appendChild(btn);
         });
 
-        listContainer.appendChild(btn);
-    });
+        return section;
+    }
+
+    function renderAll(filteredList) {
+        listContainer.innerHTML = "";
+
+        const mitarbeiter = filteredList.filter(m => m.typ === "Mitarbeiter");
+        const shks = filteredList.filter(m => m.typ === "SHK");
+
+        if (mitarbeiter.length > 0) {
+            listContainer.appendChild(createList("Mitarbeiter", mitarbeiter));
+        }
+        if (shks.length > 0) {
+            listContainer.appendChild(createList("SHK", shks));
+        }
+    }
+
+
+    renderAll(mitarbeiterListe);
+
+    if (searchInput) {
+        searchInput.addEventListener("input", () => {
+            const query = (searchInput.value || "").toLowerCase();
+
+            const filtered = mitarbeiterListe.filter(m =>
+                (m.name || "").toLowerCase().includes(query) ||
+                (m.mitarbeiter_id || "").toString().toLowerCase().includes(query) ||
+                (m.typ || "").toLowerCase().includes(query)
+            );
+
+            console.log("Suchbegriff:", query);
+            console.log("Treffer:", filtered.map(f => f.name));
+            renderAll(filtered);
+        });
+    } else {
+        console.warn("searchInput nicht gefunden!");
+    }
+
 }
 
 function createEmployeeCard(m) {
-    const card = document.createElement("div");
-    card.classList.add("employee-card");
+    if (!m || !m.id) {
+        console.warn("Ungültiges Mitarbeiterobjekt in createEmployeeCard:", m);
+        return document.createElement("div");
+    }
 
-    card.innerHTML = `
-        <div class="cardClose">
-            <h3>${m.name} ${m.nachname}</h3>
-        </div>
+    const card = document.createElement("div");
+    card.id = `card-${m.id}`;
+    card.className = "employee-card";
+    if (m.typ === "SHK") card.classList.add("shk");
+
+    const commonInfo = `
+        <h3>${m.name}</h3>
         <div class="input-box-employeeInputs">
-            <div class="inputfield"><label>Name:</label><input type="text" value="${m.name}"></div>
-            <div class="inputfield"><label>Nachname:</label><input type="text" value="${m.nachname}"></div>
-            <div class="inputfield"><label>Personalnummer:</label><input type="text" value="${m.personalnummer}"></div>
-            <div class="inputfield"><label>Abteilung/Team:</label><input type="text" value="${m.abteilung}"></div>
-            <div class="inputfield"><label>Position/Jobtitel:</label><input type="text" value="${m.position}"></div>
-            <div class="inputfield"><label>Eintrittsdatum:</label><input type="date" value="${m.eintrittsdatum}"></div>
-            <div class="inputfield"><label>Stundenlohn:</label><input type="number" value="${m.stundenlohn}"></div>
-            <div class="inputfield"><label>Urlaubsanspruch:</label><input type="number" value="${m.urlaubsanspruch}"></div>
-            <div class="inputfield"><label>Arbeitszeitmodell:</label><input type="text" value="${m.arbeitszeitmodell}"></div>
-        </div>
+            <div class="inputfield"><label>Typ:</label><input type="text" value="${m.typ}" readonly></div>
+            <div class="inputfield"><label>Personalnummer:</label><input type="text" value="${m.mitarbeiter_id}" readonly></div>
+            <div class="inputfield"><label>Wochenstunden:</label><input type="text" value="${m.wochenstunden || m.hoursPerWeek || ''}" readonly></div>
     `;
 
+    let spezifisch = "";
+
+    if (m.typ === "Mitarbeiter") {
+        const brutto = (parseFloat(m.brutto_bis_10_2024) || 0) + (parseFloat(m.brutto_ab_11_2024) || 0);
+        const jsz = (parseFloat(m.jsz_2024_bis_10_2024) || 0) + (parseFloat(m.jsz_2024_ab_11_2024) || 0);
+
+        spezifisch += `
+            <div class="inputfield"><label>Entgeltgruppe:</label><input type="text" value="${m.entgeltgruppe || ''}" readonly></div>
+            <div class="inputfield"><label>Brutto 2024:</label><input type="text" value="${brutto.toFixed(2)} €" readonly></div>
+            <div class="inputfield"><label>JSZ 2024:</label><input type="text" value="${jsz.toFixed(2)} €" readonly></div>
+            <div class="inputfield"><label>Gesamtsumme:</label><input type="text" value="${m.gesamtsumme || ''} €" readonly></div>
+        `;
+    } else {
+        spezifisch += `
+            <div class="inputfield"><label>SHK-Typ:</label><input type="text" value="${m.workingType02 || ''}" readonly></div>
+            <div class="inputfield"><label>Stundenlohn:</label><input type="text" value="${m.salary || ''} €" readonly></div>
+            <div class="inputfield"><label>Gesamtkosten:</label><input type="text" value="${m.shkEmployeeSum || ''} €" readonly></div>
+        `;
+    }
+
+    card.innerHTML = commonInfo + spezifisch + `</div>`;
     return card;
 }
 
-function ScrollToTopButton() {
-    const backToTopBtn = document.getElementById("backToTopBtn");
-    if (!backToTopBtn) return;
+function initScrollToTopButton() {
+    const scrollBtn = document.getElementById("scrollTopBtn");
+    if (!scrollBtn) return;
 
     window.addEventListener("scroll", () => {
-        backToTopBtn.style.display =
-            (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300)
-                ? "block"
-                : "none";
+        scrollBtn.classList.toggle("hidden", window.scrollY <= 300);
     });
 
-    backToTopBtn.addEventListener("click", () => {
+    scrollBtn.addEventListener("click", () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     });
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    initEmployeePage();
+});

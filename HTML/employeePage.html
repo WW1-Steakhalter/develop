@@ -1,13 +1,22 @@
-<title>Mitarbeiter</title>
-<link rel="stylesheet" href="../CSS/style.css" />
-<link rel="stylesheet" href="../CSS/employeePage.css" />
-
-<script src="../javaScripts/mitarbeiter.js"></script>
 <div class="containerEmployeePage">
-    <div class="employee-page-layout">
-        <div id="employeeList" class="employee-list"></div>
-        <div id="employeeDetails" class="employee-details"></div>
+    <h1 class="section-title">Mitarbeiterübersicht</h1>
+
+    <div class="employee-page-layout bordered-box">
+        <!-- Linke Seite: Mitarbeiterliste -->
+        <div class="employee-list">
+            <input type="text" id="searchInput" class="search-input" placeholder="Suche nach Name oder Personalnummer...">
+            <div id="employeeButtons">
+                <!-- Dynamisch eingefügte Buttons -->
+            </div>
+        </div>
+
+        <!-- Rechte Seite: Details -->
+        <div id="employeeDetails" class="employee-details">
+            <!-- Dynamischer Inhalt -->
+        </div>
     </div>
 </div>
-<button id="backToTopBtn" title="Nach oben">↑</button>
 
+<button id="scrollTopBtn" class="scroll-top-button hidden">
+    <img src="/img/ButtonArrowUp.svg" alt="Nach oben" />
+</button>
