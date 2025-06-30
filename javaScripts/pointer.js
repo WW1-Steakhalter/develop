@@ -6,6 +6,6 @@ function rotatePointer(degrees) {
 }
 
 // Beispiel: Pointer auf 45 Grad drehen
-rotatePointer(-77);
+rotatePointer(-80);
 
 

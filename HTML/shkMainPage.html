@@ -1,9 +1,12 @@
+<h2> Studentische oder Wissenschaftliche Hilfskraft (SHK/WHK)</h2>
+
 <label for="workingType">Wähle eine Mitarbeitertyp</label>
 <input id="workingType" name="q" type="search" list="type" placeholder="Mitarbeitertyp">
 <datalist id="type">
     <option>SHK/WHK</option>
     <option>Mitarbeiter</option>
 </datalist>
+<br>
 <form method="post" >
 <div class="section-box">
     <h3>Angaben zum Mitarbeiter</h3>
@@ -30,7 +33,7 @@
         </div>
         <div class="inputfield">
             <label for="salary">Stundensatz</label>
-            <input id="salary" name="salary" type="search">
+            <input id="salary" name="salary" type="search" readonly>
         </div>
         <div class="inputfield">
             <label for="month2024">2024</label>
@@ -59,19 +62,19 @@
     <div class="input-box">
         <div class="inputfield">
             <label for="yearSum2024">2024</label>
-            <input id="yearSum2024" name="yearSum2024" type="search">
+            <input id="yearSum2024" name="yearSum2024" type="search" readonly>
         </div>
         <div class="inputfield">
             <label for="yearSum2025">2025</label>
-            <input id="yearSum2025" name="yearSum2025" type="search">
+            <input id="yearSum2025" name="yearSum2025" type="search" readonly>
         </div>
         <div class="inputfield">
             <label for="yearSum2026">2026</label>
-            <input id="yearSum2026" name="yearSum2026" type="search">
+            <input id="yearSum2026" name="yearSum2026" type="search" readonly>
         </div>
         <div class="inputfield">
             <label for="yearSum2027">2027</label>
-            <input id="yearSum2027" name="yearSum2027" type="search">
+            <input id="yearSum2027" name="yearSum2027" type="search" readonly>
         </div>
     </div>
 </div>
@@ -79,14 +82,40 @@
     <div class="input-box">
         <div class="inputfield">
             <h3>Gesamt</h3>
-            <input id="shkEmployeeSum" name="q" type="search">
+            <input id="shkEmployeeSum" name="q" type="search" readonly>
         </div>
     </div>
 </div>
     <div class="section-box">
-        <button type="submit">Rechnen</button>
-        <button type="reset">Löschen</button>
-        <button type="button" onClick="submitShkInputsToDb()">Mitarbeiter speichern</button>
-        <button type="button">zu Projekt hinzufügen</button>
+        <div class = "input-box">
+        <div class = "inputfield-button">
+            <button type="button" class="buttonImgFull" onclick="rechnen_SHK_WHK()">
+                <span class = "button-text" >Rechnen</span>
+                <img class = "button-unselected" src="img/ButtonUnselected.svg" alt="Rechnen" title="Rechnen">
+                <img class = "button-Hovered" src="img/ButtonHovered.svg" alt="Rechnen" title="Rechnen">
+            </button>
+        </div>
+        <div class = "inputfield-button">
+            <button type="button" class="buttonImgFull">
+                <span class = "button-text" >Löschen</span>
+                <img class = "button-unselected" src="img/ButtonUnselected.svg" alt="Löschen" title="Löschen">
+                <img class = "button-Hovered" src="img/ButtonHovered.svg" alt="Löschen" title="Löschen">
+            </button>
+        </div>
+        <div class = "inputfield-button">
+            <button type="button" class="buttonImgFull" onclick="submitEmployeeInputsToDb()">
+                <span class = "button-text" >Mitarbeiter speichern</span>
+                <img class = "button-unselected" src="img/ButtonUnselected.svg" alt="Mitarbeiter hinzufügen" title="Mitarbeiter hinzufügen">
+                <img class = "button-Hovered" src="img/ButtonHovered.svg" alt="Mitarbeiter hinzufügen" title="Mitarbeiter hinzufügen">
+            </button>
+        </div>
+        <div class="inputfield-button">
+            <button type="button" class="buttonImgFull" onclick="submitEmployeeInputsToDbAndAddToProject()">
+                <span class = "button-text" >Zu Projekt hinzufügen</span>
+                <img class = "button-unselected" src="img/ButtonUnselected.svg" alt="Zu Projekt hinzufügen" title="Zu Projekt hinzufügen">
+                <img class = "button-Hovered" src="img/ButtonHovered.svg" alt="Zu Projekt hinzufügen" title="Zu Projekt hinzufügen">
+            </button>
+        </div>
+    </div>
     </div>
 </form>

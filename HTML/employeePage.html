@@ -1,40 +1,22 @@
-<title>Mitarbeiter</title>
-<link rel="stylesheet" href="../CSS/style.css" />
-<link rel="stylesheet" href="../CSS/employeePage.css" />
-
 <div class="containerEmployeePage">
+    <h1 class="section-title">Mitarbeiterübersicht</h1>
 
-        <div class="top-bar">
-            <button id="addEmployeeBtn" class="employee-button global-button">+ Mitarbeiter hinzufügen</button>
-        </div>
-
-        <div class="employee-page-layout">
-            <div class="employee-list">
-                <div id="employeeList"></div>
+    <div class="employee-page-layout bordered-box">
+        <!-- Linke Seite: Mitarbeiterliste -->
+        <div class="employee-list">
+            <input type="text" id="searchInput" class="search-input" placeholder="Suche nach Name oder Personalnummer...">
+            <div id="employeeButtons">
+                <!-- Dynamisch eingefügte Buttons -->
             </div>
-
-            <div id="employeeDetails" class="employee-details"></div>
         </div>
-</div>
 
-<div id="employeeModal" class="modal hidden">
-    <div class="modal-content">
-        <h2>Neuer Mitarbeiter</h2>
-        <div class="input-box-employeeInputs">
-            <div class="inputfield"><label>Name:</label><input type="text" id="newName"></div>
-            <div class="inputfield"><label>Personalnummer:</label><input type="text" id="newPersonalnummer"></div>
-            <div class="inputfield"><label>Abteilung/Team:</label><input type="text" id="newAbteilung"></div>
-            <div class="inputfield"><label>Position/Jobtitel:</label><input type="text" id="newPosition"></div>
-            <div class="inputfield"><label>Gesamtkosten:</label><input type="text" id="newKosten"></div>
+        <!-- Rechte Seite: Details -->
+        <div id="employeeDetails" class="employee-details">
+            <!-- Dynamischer Inhalt -->
         </div>
-        <button id="saveEmployeeBtn">Speichern</button>
-        <button id="closeModalBtn">Abbrechen</button>
     </div>
 </div>
 
 <button id="scrollTopBtn" class="scroll-top-button hidden">
-    <img src="../imgtemp/ButtonArrowUp.svg" alt="Nach oben" />
+    <img src="/img/ButtonArrowUp.svg" alt="Nach oben" />
 </button>
-
-<script src="../javaScripts/mitarbeiter.js"></script>
-

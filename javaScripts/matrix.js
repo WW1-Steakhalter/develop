@@ -7,7 +7,7 @@ const matrix = [
     ["E15Ü°3", 7434.87636],
     ["E15Ü°4", 7853.95084],
     ["E15Ü°5", 7957.03868],
-    ["E15Ü6", 0.00 ],
+    ["E15Ü°6", 0.00 ],
 
     ["E15°1", 5017.3082 ],
     ["E15°2", 5394.34776],
@@ -138,7 +138,9 @@ const matrix = [
 ];
 
 let entgeltyp, H13, C13, D13, E13, F13, G13, N12_bis_10_2024, N12_ab_11_2024, N12_2025, N12_2026, N12_2027;
-
+// FOLGEWERTE für die NEUEN MATRIXWERTE
+let folgejahr_1 = 200;
+let folgejahr_2 = 1.055;
 // Getter
 
 function rechnen() {
@@ -191,40 +193,34 @@ function searchEntgeld(entgeldtyp){
 console.log(matrix.length)
 
 function OutputBrutto(){
-    document.getElementById("brutto_bis_10_2024").value = OutputBrutto2024_bis_10_2024();
-    document.getElementById("brutto_ab_11_2024").value = OutputBrutto2024_ab_11_2024();
-    document.getElementById("brutto_2025").value = OutputBrutto2025();
-    document.getElementById("brutto_2026").value = OutputBrutto2026();
-    document.getElementById("brutto_2027").value = OutputBrutto2027();
+    document.getElementById("brutto_bis_10_2024").value = OutputBrutto2024_bis_10_2024().toFixed(2);
+    document.getElementById("brutto_ab_11_2024").value = OutputBrutto2024_ab_11_2024().toFixed(2);
+    document.getElementById("brutto_2025").value = OutputBrutto2025().toFixed(2);
+    document.getElementById("brutto_2026").value = OutputBrutto2026().toFixed(2);
+    document.getElementById("brutto_2027").value = OutputBrutto2027().toFixed(2);
     console.log("Bruttowerte aktualisiert.");
 }
 function OutputJSZ(){
-    document.getElementById("jsz_2024_bis_10_2024").value = Jahressonderzahlungen10_2024();
-    document.getElementById("jsz_2024_ab_11_2024").value = Jahressonderzahlungen11_2024();
-    document.getElementById("jsz_2025").value = Jahressonderzahlungen2025();
-    document.getElementById("jsz_2026").value = Jahressonderzahlungen2026();
-    document.getElementById("jsz_2027").value = Jahressonderzahlungen2027();
+    document.getElementById("jsz_2024_bis_10_2024").value = Jahressonderzahlungen10_2024().toFixed(2);
+    document.getElementById("jsz_2024_ab_11_2024").value = Jahressonderzahlungen11_2024().toFixed(2);
+    document.getElementById("jsz_2025").value = Jahressonderzahlungen2025().toFixed(2);
+    document.getElementById("jsz_2026").value = Jahressonderzahlungen2026().toFixed(2);
+    document.getElementById("jsz_2027").value = Jahressonderzahlungen2027().toFixed(2);
 }
 
 function OutputJahressumme(){
-    document.getElementById("js_bis_10_2024").value = Jahressumme_bis_10_2024(OutputBrutto2024_bis_10_2024(), Jahressonderzahlungen10_2024());
-    document.getElementById("js_ab_11_2024").value = Jahressumme_ab_11_2024(OutputBrutto2024_ab_11_2024(), Jahressonderzahlungen11_2024());
-    document.getElementById("js_2025").value = Jahressumme2025(OutputBrutto2025(), Jahressonderzahlungen2025());
-    document.getElementById("js_2026").value = Jahressumme2026(OutputBrutto2026(), Jahressonderzahlungen2026());
-    document.getElementById("js_2027").value = Jahressumme2027(OutputBrutto2027(), Jahressonderzahlungen2027());
+    document.getElementById("js_bis_10_2024").value = Jahressumme_bis_10_2024(OutputBrutto2024_bis_10_2024(), Jahressonderzahlungen10_2024()).toFixed(2);
+    document.getElementById("js_ab_11_2024").value = Jahressumme_ab_11_2024(OutputBrutto2024_ab_11_2024(), Jahressonderzahlungen11_2024()).toFixed(2);
+    document.getElementById("js_2025").value = Jahressumme2025(OutputBrutto2025(), Jahressonderzahlungen2025()).toFixed(2);
+    document.getElementById("js_2026").value = Jahressumme2026(OutputBrutto2026(), Jahressonderzahlungen2026()).toFixed(2);
+    document.getElementById("js_2027").value = Jahressumme2027(OutputBrutto2027(), Jahressonderzahlungen2027()).toFixed(2);
 }
 
 function OutputGesamtSumme(){
-    document.getElementById("gesamtsumme").value = GesamtSumme();
+    document.getElementById("gesamtsumme").value = GesamtSumme().toFixed(2);
 }
 
-// Event-Listener für den Seitenaufruf
-/*function afterMainPageLoad() {
-    OutputBrutto();
-    OutputJSZ();
-    OutputJahressumme();
-    OutputGesamtSumme();
-}*/
+
 
 //Brutto-Berechnungen für 2024 bis 2027
 function OutputBrutto2024_bis_10_2024(){
@@ -233,41 +229,35 @@ function OutputBrutto2024_bis_10_2024(){
         value = (value * 1.24 ) + 120;
     }
     return value;
-}    
+}
 function OutputBrutto2024_ab_11_2024(){
     let value = searchEntgeld(entgeltyp);
     if (value !== 0){
-        value = (value + 200) * 1.24;
+        value = (value + folgejahr_1) * 1.24;
     }
     return value;
 }
 function OutputBrutto2025(){
     let value = searchEntgeld(entgeltyp);
     if (value !== 0){
-        value = ((value + 200) * 1.055) * 1.24;
+        value = ((value + folgejahr_1) * folgejahr_2) * 1.24;
     }
     return value;
 }
 function OutputBrutto2026(){
     let value = searchEntgeld(entgeltyp);
     if (value !== 0){
-        value = (((value + 200) * 1.055) * 1.24) * 1.03;
+        value = (((value + folgejahr_1) * folgejahr_2) * 1.24) * 1.03;
     }
     return value;
 }
 function OutputBrutto2027(){
     let value = searchEntgeld(entgeltyp);
     if (value !== 0){
-        value = ((((value + 200) * 1.055) * 1.24) * 1.03) * 1.03;
+        value = ((((value + folgejahr_1) * folgejahr_2) * 1.24) * 1.03) * 1.03;
     }
     return value;
 }
-function getMatrixValue(key, colIndex = 6) {
-    // colIndex = 6, weil Spalte 7 in Excel, aber 0-basiert in JS
-    const row = matrix.find(r => r[0] === key);
-    return row ? row[colIndex] : 0;
-}
-
 
 function Jahressonderzahlungen10_2024() {
     let result = 0;
@@ -289,7 +279,7 @@ function Jahressonderzahlungen10_2024() {
 //Funktionen für JSZ Berechnungen
 function Jahressonderzahlungen11_2024() {
     let result = 0;
-    let value = ((searchEntgeld(entgeltyp) + 200) * 1.24) * 0.3253;
+    let value = ((searchEntgeld(entgeltyp) + folgejahr_1) * 1.24) * 0.3253;
     if (N12_ab_11_2024 === "nein") {
         result = 0;
     } 
@@ -303,7 +293,7 @@ function Jahressonderzahlungen11_2024() {
 }
 function Jahressonderzahlungen2025() {
     let result = 0;
-    let value = (((searchEntgeld(entgeltyp) + 200) * 1.055) * 1.24) * 0.3253;
+    let value = (((searchEntgeld(entgeltyp) + folgejahr_1) * folgejahr_2) * 1.24) * 0.3253;
     if (N12_2025 === "nein") {
         result = 0;
     } 
@@ -317,7 +307,7 @@ function Jahressonderzahlungen2025() {
 }
 function Jahressonderzahlungen2026() {
     let result = 0;
-    let value = ((((searchEntgeld(entgeltyp) + 200) * 1.055) * 1.24) * 1.03) * 0.3253;
+    let value = ((((searchEntgeld(entgeltyp) + folgejahr_1) * folgejahr_2) * 1.24) * 1.03) * 0.3253;
     if (N12_2026 === "nein") {
         result = 0;
     } 
@@ -332,7 +322,7 @@ function Jahressonderzahlungen2026() {
 }
 function Jahressonderzahlungen2027() {
     let result = 0;
-    let value = (((((searchEntgeld(entgeltyp) + 200) * 1.055) * 1.24) * 1.03) * 1.03) * 0.3253;
+    let value = (((((searchEntgeld(entgeltyp) + folgejahr_1) * folgejahr_2) * 1.24) * 1.03) * 1.03) * 0.3253;
     if (N12_2027 === "nein") {
         result = 0;
     } 
@@ -398,4 +388,77 @@ function GesamtSumme(){
     
     return summe;
 }
+
+
+
+//SHK/WHK
+
+let mitarbeiterTyp, D26_SHK_WHK_2024, E26_SHK_WHK_2025, F26_SHK_WHK_2026, G26_SHK_WHK_2027, H26_SHK_WHK_Wochenstunden, Stundensatz
+
+
+function userInputGetter_SHK_WHK() {
+    mitarbeiterTyp = document.getElementById('workingType02').value;
+    D26_SHK_WHK_2024 = parseFloat(document.getElementById('month2024').value) || 0;
+    E26_SHK_WHK_2025 = parseFloat(document.getElementById('month2025').value) || 0;
+    F26_SHK_WHK_2026 = parseFloat(document.getElementById('month2026').value) || 0;
+    G26_SHK_WHK_2027 = parseFloat(document.getElementById('month2027').value) || 0;
+    H26_SHK_WHK_Wochenstunden = parseFloat(document.getElementById('hoursPerWeek').value) || 0;
+
+    if (mitarbeiterTyp === "SHK") {
+        Stundensatz = 16.99; // Stundensatz für SHK
+        return Stundensatz;
+    }
+    else if (mitarbeiterTyp === "WHK") {
+        Stundensatz = 18.27; // Stundensatz für WHK
+        return Stundensatz;
+    } else {
+        Stundensatz = 0;
+    }
+}
+
+
+function JahressummeSHK_WHK_2024(){
+    let result = ((H26_SHK_WHK_Wochenstunden * Stundensatz) * 4.333333) * D26_SHK_WHK_2024
+    return result;
+}
+function JahressummeSHK_WHK_2025(){
+    let result = ((H26_SHK_WHK_Wochenstunden * Stundensatz) * 4.333333) * E26_SHK_WHK_2025
+    return result;
+}
+function JahressummeSHK_WHK_2026(){
+    let result = ((H26_SHK_WHK_Wochenstunden * Stundensatz) * 4.333333) * F26_SHK_WHK_2026
+    return result;
+}
+function JahressummeSHK_WHK_2027(){
+    let result = ((H26_SHK_WHK_Wochenstunden * Stundensatz) * 4.333333) * G26_SHK_WHK_2027
+    return result;
+}
+
+function GesamtSummeSHK_WHK(){
+    let summe = 0;
+    summe += JahressummeSHK_WHK_2024();
+    summe += JahressummeSHK_WHK_2025();
+    summe += JahressummeSHK_WHK_2026();
+    summe += JahressummeSHK_WHK_2027();
+    return summe;
+}
+
+function OutputSHK_WHK() {
+    document.getElementById("yearSum2024").value = JahressummeSHK_WHK_2024().toFixed(2);
+    document.getElementById("yearSum2025").value = JahressummeSHK_WHK_2025().toFixed(2);
+    document.getElementById("yearSum2026").value = JahressummeSHK_WHK_2026().toFixed(2);
+    document.getElementById("yearSum2027").value = JahressummeSHK_WHK_2027().toFixed(2);
+
+    document.getElementById("shkEmployeeSum").value = GesamtSummeSHK_WHK().toFixed(2);
+}
+
+function rechnen_SHK_WHK() {
+    alert("Die Berechnung wird durchgeführt. Bitte warten Sie einen Moment.");
+    userInputGetter_SHK_WHK();
+    OutputSHK_WHK()
+}
+
+
+
+
 

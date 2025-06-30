@@ -8,7 +8,7 @@
     align-items: center;
 }
 .button-text{
-    font-family: "Rye", serif;
+    font-family: "Courier Prime", monospace;
 }
 
 /* Responsive Button mit Text in Bild */
@@ -50,7 +50,7 @@
     position: absolute;
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    color: wheat;
+    color: var(--primary-button-text-color);
     font-weight: bold;
     font-size: 1.1em;
     text-align: center;
@@ -72,40 +72,48 @@
 /*Clockmenu*/
 
 .clock-container {
-    position: fixed;
-    top: 22vh;
-    left: 0;
-    width: 21.5vw;
-    height: 21.5vw;
-    max-width: 400px;
-    max-height: 400px;
-    
-    margin-left: -5.2%;
-    padding-left: -10%;
-    
-}
-.clock {
-    position: absolute;
-    top: 0; left: 0;
+    position: relative;
+    size: cover;
     width: 100%;
+    height: 21.5vw;
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    z-index: 1000;
+    left: -24%;
+    top: 16%; 
+}
+
+.clock {
+    position: fixed;
+    top: 0; left: 0;
+    width: 13%;
     height: 100%;
     display: block;
+    margin-left: 0;
 }
 .pointer {
-    position: absolute;
+    position: fixed;
     top: 0; left: 0;
-    width: 30%;
+    width: 7%;
     height: 100%;
-    margin-left: 24%;
+    margin-left: 1%;
     display: block;
     transform-origin: 13.636% 50%;
     transition: transform 0.5s cubic-bezier(0.4, 2, .6, 1);
 }
 
 
+/*NÖTIG für reltive Größe für Uhr*/
+
+
+
+
 /* Responsive Button mit Text in Bild FÜR MENÜ*/
 .buttonImgFull-Menu {
-    position: relative;
+    position: absolute;
     display: inline-block;
     border: none;
     background: none;
@@ -144,7 +152,7 @@
     transform: translate(-50%, -50%);
     color: wheat;
     font-weight: bold;
-    font-size: 1.1em;
+    font-size: 1.0vw;
     text-align: center;
     width: 90%;
     pointer-events: none;
@@ -167,61 +175,49 @@
 }
 
 .clock-menu-btn-Start {
-    position: absolute;
-    top: 0%;    /* Bewegen der Button */
-    left: 55%;
+    position: fixed;
+    top: 27%;    /* Bewegen der Button */
+    left: 8%;
     transform: translate(-50%, -50%);
     z-index: 2;
-    width: 160px;   /*Button Größe*/
-    height: 35px;
+    width: 10.5%;    /*Button Größe*/
+    
 }
 .clock-menu-btn-Hauptrechnung{
-    position: absolute;
-    top: 18%;    /* Bewegen der Button */
-    left: 80%;
+    position: fixed;
+    top: 36%;    /* Bewegen der Button */
+    left: 14%;
     transform: translate(-50%, -50%);
     z-index: 2;
-    width: 160px;   /*Button Größe*/
-    height: 35px;
+    width: 10.5%;   /*Button Größe*/
 }
 .clock-menu-btn-Projekte{
-    position: absolute;
-    top: 40%;    /* Bewegen der Button */
-    left: 90%;
+    position: fixed;
+    top: 50%;    /* Bewegen der Button */
+    left: 16.5%;
     transform: translate(-50%, -50%);
     z-index: 2;
-    width: 160px;   /*Button Größe*/
-    height: 35px;
-}
-.clock-menu-btn-Vorlagen{
-    position: absolute;
-    top: 60%;    /* Bewegen der Button */
-    left: 90%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    width: 160px;   /*Button Größe*/
-    height: 35px;
+    width: 10.5%;    /*Button Größe*/
+    
 }
 .clock-menu-btn-Mitarbeiter{
-    position: absolute;
-    top: 82%;    /* Bewegen der Button */
-    left: 80%;
+    position: fixed;
+    top: 64%;    /* Bewegen der Button */
+    left: 14%;
     transform: translate(-50%, -50%);
     z-index: 2;
-    width: 160px;   /*Button Größe*/
-    height: 35px;
+    width: 10.5%;    /*Button Größe*/
 }
 .clock-menu-btn-Einstellungen {
-    position: absolute;
-    top: 100%;    /* Bewegen der Button */
-    left: 55%;
+    position: fixed;
+    top: 73%;    /* Bewegen der Button */
+    left: 8%;
     transform: translate(-50%, -50%);
     z-index: 2;
-    width: 160px;   /*Button Größe*/
-    height: 35px;
+    width: 10.5%;    /*Button Größe*/
 }
 .button-text-Menu{
-    font-family: "Rye", serif;
+    font-family: "Courier Prime", monospace;
 }
 
 #impressum-button {
@@ -244,5 +240,42 @@
     background-color: #ddd;
 }
 
+/*Matirx bearbeiten Buttons*/
+.inputfield-button-matrix {
+    flex: 1 1 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
+}
+
+
+/*Lightmodebutton*/
+.lightMode-Button {
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+.darkMode-Button {
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+.button-unselected-Menu,
+.button-Hovered-Menu,
+.button-Selected-Menu {
+    transition: opacity 1s;
+    opacity: 1;
+}
+.button-img-fade{
+    opacity: 0.1;
+}
 
 

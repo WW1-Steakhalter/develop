@@ -1,0 +1,200 @@
+/*MatrixPopUp*/
+/* Einstellungen-Layout */
+.settings-container {
+    position: relative;
+    max-width: 800px;
+    margin: 40px auto 0 auto;
+    background: var(--primary-sectionbox-bg-color);
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+    padding: 28px 28px 20px 28px;
+    border: var(--primary-border-color);
+    transition: all ease 0.5s;
+}
+
+.settings-title {
+    font-size: 2.2rem;
+    margin-bottom: 24px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.settings-section {
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #444;
+}
+
+.settings-subtitle {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+    color: #ffd700;
+    font-weight: 600;
+}
+
+.settings-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 12px;
+}
+
+.settings-hint {
+    color: var(--hint-color);
+    font-size: 0.95rem;
+    margin-top: 8px;
+}
+
+.inputfield-button-matrix {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Matrix bearbeiten Button */
+
+/* Matrix PopUp */
+
+.popup-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+.popup-content {
+    background: #23272a;
+    color: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    min-width: 320px;
+    max-width: 75vw;
+    max-height: 75vh;
+    overflow: auto;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+    border: 1px solid gold;
+    animation: popup-fade-in 0.2s;
+    margin: 5vh 10vw;
+    scrollbar-width: none;        /* Firefox */ /*Hässliche Scrollbar wegmachen*/
+    -ms-overflow-style: none;   /* Internet Explorer und Edge */
+
+}
+.popup-content::-webkit-scrollbar {
+    display: none;                /* Chrome, Safari, Opera */
+}
+.popup-content.fade-out {
+    animation: popup-fade-out 0.2s forwards;
+}
+
+@keyframes popup-fade-in {
+    from { transform: scale(0.95); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+}
+@keyframes popup-fade-out {
+    from { transform: scale(1); opacity: 1; }
+    to   { transform: scale(0.95); opacity: 0; }
+}
+
+.popup-content h2 {
+    margin-top: 0;
+    color: #ffd700;
+    font-size: 1.4rem;
+    margin-bottom: 18px;
+}
+.popup-btn-row {
+    display: flex;
+    gap: 16px;
+    justify-content: flex-end;
+    margin-top: 18px;
+}
+#matrixEditor table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+}
+#matrixEditor th, #matrixEditor td {
+    border: 1px solid #444;
+    padding: 8px;
+    text-align: left;
+}
+#matrixEditor th {
+    background: #2c2c2c;
+    color: #ffd700;
+}
+#matrixEditor input[type="number"] {
+    width: 95%;
+    background: #1e1e1e;
+    color: #ffd700;
+    border: 1px solid #ffd700;
+    border-radius: 4px;
+    padding: 4px 8px;
+}
+
+.folgejahr-row {
+    display: flex;
+    gap: 24px;
+    margin: 16px 0 0 0;
+    align-items: center;
+    justify-content: left;
+}
+.folgejahr-row label {
+    display: flex;
+    flex-direction: column;
+    color: #ffd700;
+    font-weight: 600;
+    justify-content: center;
+    align-items: center;
+}
+.folgejahr-row input {
+    width: 100px;
+    background: #1e1e1e;
+    color: #ffd700;
+    border: 1px solid #ffd700;
+    border-radius: 4px;
+    padding: 4px 8px;
+    margin-top: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/*Design Cog*/
+.settings-cog-wrapper {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    display: flex;
+    z-index: 110;
+}
+
+.settings-cog,
+.settings-cog2 {
+    position: static;
+    width: 50px;
+    height: 50px;
+    opacity: 0.8;
+}
+
+.settings-cog2 {
+    width: 46px;
+    height: 46px;
+    margin-top: 12%;
+    margin-left: -4px;
+    rotate: 8deg;
+}
+
+.settings-cog img,
+.settings-cog2 img {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.settings-cog:hover,
+.settings-cog2:hover {
+    opacity: 1;
+}
