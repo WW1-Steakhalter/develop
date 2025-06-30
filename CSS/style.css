@@ -239,11 +239,11 @@ body, html {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #3c3c3c;
+    background: var(--primary-bg-color);
     padding: 0.5rem;
     margin-bottom: 0.5rem;
     border-radius: 5px;
-    color: #fff;
+    color: var(--primary-font-color);
 }
 
 .project-list li button {
@@ -286,7 +286,7 @@ input {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #444;
+    background-color: var(--primary-bg-color);
     margin-bottom: 4px;
     padding: 6px 10px;
     border-radius: 6px;
