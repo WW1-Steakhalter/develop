@@ -5,6 +5,7 @@ function loadProjectData() {
     const mitarbeiterTBody = document.getElementById("mitarbeiterTBody");
     const projektNameZelle = document.querySelector("#projektTabelle thead tr th:first-child");
     const kostenZelle = document.querySelector("#projektTabelle thead tr th:nth-child(2)");
+    const mitarbeiterId = document.getElementById("mitarbeiter_id");
 
     if (!projektTabelle || !tbody || !projectList || !mitarbeiterTBody) {
         console.warn("❗ HTML-Elemente fehlen.");
@@ -27,12 +28,28 @@ function loadProjectData() {
                 const kosten = parseFloat(row.gesamtkosten || 0).toFixed(2);
 
                 const li = document.createElement("li");
-                li.textContent = name;
-                li.style.cursor = "pointer";
-                li.onclick = () => {
-                    loadDetails(name, parseFloat(kosten));
+                li.classList.add("project-item");
+
+                const spanName = document.createElement("span");
+                spanName.textContent = name;
+                spanName.style.cursor = "pointer";
+                spanName.onclick = () => loadDetails(name, parseFloat(kosten));
+
+                const deleteBtn = document.createElement("img");
+                deleteBtn.src = "/img/ButtonBack.svg";  // oder ggf. relativer Pfad
+                deleteBtn.alt = "Projekt löschen";
+                deleteBtn.className = "delete-btn";
+                deleteBtn.onclick = (e) => {
+                    e.stopPropagation(); // verhindert Detail-Ansicht
+                    if (confirm(`Projekt "${name}" wirklich löschen?`)) {
+                        deleteProject(name);
+                    }
                 };
+
+                li.appendChild(spanName);
+                li.appendChild(deleteBtn);
                 projectList.appendChild(li);
+
             });
             getDropdownMenu(data);
         })
@@ -120,5 +137,145 @@ function compareProjects(data) {
         <div><strong>Teureres Projekt:</strong> ${teurer}</div>
     `;
 }
+
+function deleteProject(name) {
+    const formData = new FormData();
+    formData.append("projektname", name);
+
+    fetch("/PHP/deleteProject.php", {
+        method: "POST",
+        body: formData
+    })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                alert("Projekt erfolgreich gelöscht.");
+                loadProjectData();
+            } else {
+                alert("Fehler: " + data.message);
+            }
+        })
+        .catch(err => {
+            console.error(" Netzwerkfehler:", err);
+            alert("Netzwerkfehler beim Löschen");
+        });
+}
+
+function openProjektModal() {
+    document.getElementById("projektModal").style.display = "flex";
+
+    fetch("/PHP/getProjectList.php")
+        .then(res => res.json())
+        .then(data => {
+            const list = document.getElementById("projektListe");
+            list.innerHTML = "";
+
+            data.forEach(projekt => {
+                const li = document.createElement("li");
+                li.textContent = projekt.projektname;
+                li.style.cursor = "pointer";
+
+                li.onclick = () => {
+                    const mitarbeiterId = document.getElementById("mitarbeiter_id")?.value || "";
+                    const name = document.getElementById("name")?.value || "";
+                    const typ = document.getElementById("workingType02")?.value || "fest"; // default zu 'fest'
+
+                    if (!mitarbeiterId || !name || !typ) {
+                        alert("❗ Bitte zuerst Name, Typ und Mitarbeiter-ID eingeben.");
+                        return;
+                    }
+
+                    // Formulardaten vorbereiten (SHK oder FEST)
+                    const formData = new FormData();
+                    let url = "";
+
+                    if (typ === "shk") {
+                        url = "/PHP/insertShkAndWhk.php";
+
+                        const ids = [
+                            "name", "mitarbeiter_id", "workingType02",
+                            "salary", "month2024", "month2025", "month2026", "month2027",
+                            "hoursPerWeek",
+                            "yearSum2024", "yearSum2025", "yearSum2026", "yearSum2027",
+                            "shkEmployeeSum"
+                        ];
+                        ids.forEach(id => {
+                            const el = document.getElementById(id);
+                            if (el) formData.append(id, el.value);
+                        });
+                    } else {
+                        url = "/PHP/insertMitarbeiter.php";
+
+                        const ids = [
+                            "mitarbeiter_id", "name", "entgeltgruppe",
+                            "2024_bis_10_2024", "2024_ab_11_2024", "2025", "2026", "2027",
+                            "wochenstunden",
+                            "brutto_bis_10_2024", "brutto_ab_11_2024", "brutto_2025", "brutto_2026", "brutto_2027",
+                            "jsz_2024_bis_10_2024", "jsz_2024_ab_11_2024", "jsz_2025", "jsz_2026", "jsz_2027",
+                            "js_bis_10_2024", "js_ab_11_2024", "js_2025", "js_2026", "js_2027",
+                            "gesamtsumme"
+                        ];
+                        ids.forEach(id => {
+                            const el = document.getElementById(id);
+                            if (el) formData.append(id, el.value);
+                        });
+                    }
+
+                    // ➕ Mitarbeiter speichern (abhängig von Typ) und dann zum Projekt hinzufügen
+                    fetch(url, {
+                        method: "POST",
+                        body: formData
+                    })
+                        .then(res => res.text())
+                        .then(response => {
+                            if (response.includes("erfolgreich") || response.includes("OK")) {
+                                zuProjektHinzufuegen(mitarbeiterId, projekt.projekt_id);
+                                closeProjektModal();
+                            } else {
+                                alert("❌ Fehler beim Speichern: " + response);
+                            }
+                        })
+                        .catch(error => {
+                            console.error("❌ Netzwerkfehler:", error);
+                            alert("Netzwerkfehler beim Speichern");
+                        });
+                };
+
+
+                list.appendChild(li);
+            });
+        })
+        .catch(error => {
+            console.error("Fehler beim Laden der Projekte:", error);
+            alert("Projekte konnten nicht geladen werden.");
+        });
+}
+
+function closeProjektModal() {
+    document.getElementById("projektModal").style.display = "none";
+}
+
+function zuProjektHinzufuegen(mitarbeiterId, projektId) {
+    const formData = new FormData();
+    formData.append("mitarbeiter_id", mitarbeiterId);
+    formData.append("projekt_id", projektId);
+
+    fetch("/PHP/insertEmployeeIntoProject.php", {
+        method: "POST",
+        body: formData
+    })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                alert("Mitarbeiter wurde dem Projekt zugeordnet.");
+            } else {
+                alert("Fehler: " + data.message);
+            }
+        })
+        .catch(err => {
+            console.error("❌ Fehler bei der Zuordnung:", err);
+        });
+}
+
 
 loadProjectData();

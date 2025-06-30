@@ -1,29 +1,21 @@
 <?php
-// Fehleranzeige aktivieren
-global $stmt;
+header("Content-Type: application/json; charset=utf-8");
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
-// Header setzen, um Caching zu verhindern
-header("Cache-Control: no-cache, must-revalidate");
-header("Expires: 0");
 
-// Verbindung zur Datenbank
 $host = "sql306.infinityfree.com";
 $user = "if0_39043228";
 $pass = "sF94uEqmEKO8bn";
 $dbname = "if0_39043228_developdb";
 
-// POST-Hilfsfunktion
 function getVal($key)
 {
     return isset($_POST[$key]) && $_POST[$key] != "" ? $_POST[$key] : null;
 }
 
-// POST-Werte abholen
 $name = getVal('name');
 $mitarbeiter_id = getVal('mitarbeiter_id');
 $entgeltgruppe = getVal('entgeltgruppe');
-echo $entgeltgruppe;
 $j2024a = getVal('2024_bis_10_2024');
 $j2024b = getVal('2024_ab_11_2024');
 $j2025 = getVal('2025');
@@ -47,15 +39,14 @@ $js26 = getVal('js_2026');
 $js27 = getVal('js_2027');
 $gesamt = getVal('gesamtsumme');
 
-// Verbindung aufbauen
 $conn = new mysqli($host, $user, $pass, $dbname);
 if ($conn->connect_error) {
-    die(" Verbindung fehlgeschlagen: " . $conn->connect_error);
+    echo json_encode(["success" => false, "message" => "DB-Verbindung fehlgeschlagen: " . $conn->connect_error]);
+    exit;
 }
 
 $conn->set_charset("utf8mb4");
 
-// SQL vorbereiten
 $sql = "INSERT INTO mitarbeiter (
     name, mitarbeiter_id, entgeltgruppe,
     `2024_bis_10_2024`, `2024_ab_11_2024`, `2025`, `2026`, `2027`,
@@ -66,13 +57,12 @@ $sql = "INSERT INTO mitarbeiter (
     gesamtsumme
 ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-
 $stmt = $conn->prepare($sql);
 if (!$stmt) {
-    die("❌ Prepare fehlgeschlagen: " . $conn->error);
+    echo json_encode(["success" => false, "message" => "Prepare fehlgeschlagen: " . $conn->error]);
+    exit;
 }
 
-// Parameter binden
 $stmt->bind_param(
     "sssdddddddddddddddddddddd",
     $name, $mitarbeiter_id, $entgeltgruppe,
@@ -84,12 +74,12 @@ $stmt->bind_param(
     $gesamt
 );
 
-// Ausführen & Erfolg prüfen
 if ($stmt->execute()) {
-    echo " Datensatz erfolgreich gespeichert";
+    echo "OK";
 } else {
-    echo " Fehler beim Einfügen: " . $stmt->error;
+    echo "Fehler: " . $stmt->error;
 }
+
 
 $stmt->close();
 $conn->close();

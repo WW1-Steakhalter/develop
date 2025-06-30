@@ -22,30 +22,31 @@ if (empty($projektname)) {
     exit;
 }
 
+// Query nur mit INNER JOIN auf tatsächliche Daten in mitarbeiter/shk
 $sql = "
 SELECT 
-    CASE 
-        WHEN pm.typ = 'fest' THEN mitarbeiter.name
-        WHEN pm.typ = 'shk' THEN shk.name
-        ELSE NULL
-    END AS name,
-    
-    pm.typ,
-    
-    CASE 
-        WHEN pm.typ = 'fest' THEN IFNULL(mitarbeiter.gesamtsumme, 0)
-        WHEN pm.typ = 'shk' THEN IFNULL(shk.shkEmployeeSum, 0)
-        ELSE 0
-    END AS kosten
+    m.name AS name,
+    'fest' AS typ,
+    IFNULL(m.gesamtsumme, 0) AS kosten
 FROM projekte p
 JOIN projekt_mitarbeiter pm ON p.projekt_id = pm.projekt_id
-LEFT JOIN mitarbeiter ON pm.mitarbeiter_id = mitarbeiter.mitarbeiter_id
-LEFT JOIN shk ON pm.mitarbeiter_id = shk.mitarbeiter_id
-WHERE p.name = ?
+JOIN mitarbeiter m ON pm.mitarbeiter_id = m.mitarbeiter_id
+WHERE p.name = ? AND pm.typ = 'fest'
+
+UNION ALL
+
+SELECT 
+    s.name AS name,
+    'shk' AS typ,
+    IFNULL(s.shkEmployeeSum, 0) AS kosten
+FROM projekte p
+JOIN projekt_mitarbeiter pm ON p.projekt_id = pm.projekt_id
+JOIN shk s ON pm.mitarbeiter_id = s.mitarbeiter_id
+WHERE p.name = ? AND pm.typ = 'shk'
 ";
 
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $projektname);
+$stmt->bind_param("ss", $projektname, $projektname);
 $stmt->execute();
 $result = $stmt->get_result();
 
@@ -55,4 +56,3 @@ while ($row = $result->fetch_assoc()) {
 }
 echo json_encode($daten);
 $conn->close();
-?>
