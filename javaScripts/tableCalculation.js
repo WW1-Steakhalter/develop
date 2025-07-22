@@ -119,5 +119,23 @@ function submitShkInputsToDb (){
 }
 
 
-// Rechnungen 
-
+function clearEmployeeForm() {
+    //Eingabefelder
+    [
+        "name", "mitarbeiter_id", "entgeltgruppe", "2024_bis_10_2024", "2024_ab_11_2024", "2025", "2026", "2027", "wochenstunden",
+        "brutto_bis_10_2024", "brutto_ab_11_2024", "brutto_2025", "brutto_2026", "brutto_2027",
+        "jsz_2024_bis_10_2024", "jsz_2024_ab_11_2024", "jsz_2025", "jsz_2026", "jsz_2027",
+        "js_bis_10_2024", "js_ab_11_2024", "js_2025", "js_2026", "js_2027",
+        "gesamtsumme", "workingType02", "salary", "month2024", "month2025", "month2026", "month2027", "hoursPerWeek", "yearSum2024", "yearSum2025", "yearSum2026", "yearSum2027", "shkEmployeeSum"
+    ].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = "";
+    });
+    // Auswahlfelder
+    [
+        "jsz_bis_10_2024_select", "jsz_ab_11_2024_select", "jsz_2025_select", "jsz_2026_select", "jsz_2027_select"
+    ].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = "";
+    });
+}
