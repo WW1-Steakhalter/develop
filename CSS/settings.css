@@ -18,6 +18,7 @@
     font-weight: 700;
     letter-spacing: 1px;
     text-align: center;
+    color: var(--einstellung-headline-color);
 }
 
 .settings-section {
@@ -66,8 +67,8 @@
     z-index: 1000;
 }
 .popup-content {
-    background: #23272a;
-    color: #fff;
+    background: var(--primary-sectionbox-bg-color);
+    color: var(--einstellung-headline-color);
     padding: 2rem;
     border-radius: 12px;
     min-width: 320px;
@@ -75,7 +76,7 @@
     max-height: 75vh;
     overflow: auto;
     box-shadow: 0 8px 32px rgba(0,0,0,0.35);
-    border: 1px solid gold;
+    border: var(--primary-border-color);
     animation: popup-fade-in 0.2s;
     margin: 5vh 10vw;
     scrollbar-width: none;        /* Firefox */ /*Hässliche Scrollbar wegmachen*/
@@ -100,7 +101,7 @@
 
 .popup-content h2 {
     margin-top: 0;
-    color: #ffd700;
+    color: var(--primary-headline-color);
     font-size: 1.4rem;
     margin-bottom: 18px;
 }
@@ -121,15 +122,15 @@
     text-align: left;
 }
 #matrixEditor th {
-    background: #2c2c2c;
-    color: #ffd700;
+    background: var(--primary-sectionbox-bg-color);
+    color: var(--primary-headline-color);
 }
 #matrixEditor input[type="number"] {
     width: 95%;
-    background: #1e1e1e;
-    color: #ffd700;
-    border: 1px solid #ffd700;
-    border-radius: 4px;
+    background: var(--primary-bg-color);
+    color: var(--menu-font);
+    border: 1.5px solid var(--menu-font);
+    border-radius: 8px;
     padding: 4px 8px;
 }
 
@@ -143,16 +144,16 @@
 .folgejahr-row label {
     display: flex;
     flex-direction: column;
-    color: #ffd700;
+    color: var(--menu-font);
     font-weight: 600;
     justify-content: center;
     align-items: center;
 }
 .folgejahr-row input {
     width: 100px;
-    background: #1e1e1e;
-    color: #ffd700;
-    border: 1px solid #ffd700;
+    background: var;
+    color: var(--menu-font);
+    border: var(--primary-border-color);
     border-radius: 4px;
     padding: 4px 8px;
     margin-top: 4px;

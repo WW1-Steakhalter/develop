@@ -222,23 +222,15 @@
 
 #impressum-button {
     position: fixed;
-    bottom: 15px;
-    right: 15px;
-    padding: 10px 16px;
-    font-size: 14px;
+    bottom: 1%;
+    right: 1%;
+
     font-family: 'Comfortaa', sans-serif;
-    background-color: #eee;
-    color: #333;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    cursor: pointer;
-    z-index: 1000;
-    transition: background-color 0.3s ease;
+    display: flex;
+    
+    justify-content: end;
 }
 
-#impressum-button:hover {
-    background-color: #ddd;
-}
 
 /*Matirx bearbeiten Buttons*/
 .inputfield-button-matrix {

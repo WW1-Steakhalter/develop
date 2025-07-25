@@ -14,11 +14,11 @@
 .employee-list {
     max-height: 80vh;
     overflow-y: auto;
-    background-color: #1a1a1a;
+    background-color: var(--primary-bg-color);
     padding: 1rem;
     border: 2px solid #444;
     border-radius: 12px;
-    color: white;
+    color: var(--primary-font-color);
 }
 
 .search-input {
@@ -27,8 +27,8 @@
     margin-bottom: 1rem;
     border-radius: 6px;
     border: 1px solid #888;
-    background-color: #2a2a2a;
-    color: white;
+    background-color: var(--primary-sectionbox-bg-color);
+    color: var(--primary-font-color);
     box-sizing: border-box;
 }
 
@@ -36,8 +36,8 @@
     display: block;
     width: 100%;
     padding: 10px;
-    background-color: #1a1a1a;
-    color: white;
+    background-color: var(--primary-bg-color);
+    color: var(--primary-font-color);
     border: 1px solid #555;
     border-radius: 6px;
     margin-bottom: 0.5rem;
@@ -58,14 +58,14 @@
 }
 
 .employee-button.shk {
-    background-color: #1a1a1a;
+    background-color: var(--primary-bg-color);
     border: 1px solid #555;
-    color: white;
+    color: var(--primary-font-color);
 }
 
 .employee-button.shk:hover {
     background-color: #2a2a2a;
-    border-color: gold;
+    border-color: var(--primary-border-color);
 }
 
 .employee-button.shk.active {
@@ -84,21 +84,21 @@
 
 .employee-details {
     min-height: 200px;
-    background-color: #1a1a1a;
-    border: 2px solid gold;
+    background-color: var(--primary-bg-color);
+    border: var(--primary-border-color);
     border-radius: 12px;
     padding: 1.5rem;
-    color: white;
+    color: var(primary-font-color);
 }
 
 .employee-card,
 .employee-card.shk {
-    background-color: #1a1a1a;
+    background-color: var(--primary-sectionbox-bg-color);
     border: 2px solid #474747;
     border-radius: 12px;
     padding: 1.5rem;
     margin-bottom: 1rem;
-    color: white;
+    color: var(--primary-font-color);
     transition: transform 0.2s;
 }
 
@@ -207,15 +207,15 @@
 
 .section-title {
     font-size: 1.8rem;
-    color: white;
+    color: var(--primary-headline-color);
     margin-bottom: 1.5rem;
-    border-bottom: 2px solid gold;
+
     padding-bottom: 0.5rem;
 }
 
 .bordered-box {
-    border: 2px solid gold;
+    border: var(--primary-border-color);
     border-radius: 12px;
     padding: 1rem;
-    background-color: #1a1a1a;
+    background-color: var(--primary-sectionbox-bg-color);
 }

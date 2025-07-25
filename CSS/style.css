@@ -6,9 +6,10 @@ html{
     --primary-sectionbox-bg-color: #2c2c2c;
     --primary-border-color: 1px solid gold;
     --hint-color: #aaa;
-    --primary-headline-color: White;
+    --primary-headline-color: gold;
     --primary-button-text-color: wheat;
     --menu-font: gold;
+    --einstellung-headline-color: white;
 
 }
 html[theme = "light"]{
@@ -21,6 +22,7 @@ html[theme = "light"]{
     --primary-headline-color: #924a2a;
     --primary-button-text-color: wheat;
     --menu-font: #924a2a;
+    --einstellung-headline-color: #924a2a;
 }
 html[theme = "dark"]{
     --primary-bg-color: #1e1e1e;
@@ -29,14 +31,22 @@ html[theme = "dark"]{
     --primary-sectionbox-bg-color: #2c2c2c;
     --primary-border-color: 1px solid gold;
     --hint-color: #aaa;
-    --primary-headline-color: White;
+    --primary-headline-color: gold;
     --primary-button-text-color: wheat;
     --menu-font: gold;
+    --einstellung-headline-color: white;
 
 }
 
-h1, h2{
+h1, h2, h3{
     color: var(--primary-headline-color);
+}
+.Start-headline{
+    display: block;
+    text-align: center;
+    width: 100%;
+    color: var(--menu-font);
+
 }
 
 
@@ -173,9 +183,9 @@ body, html {
 }
 
 .dropdown-style {
-    background-color: #1e1e1e;
-    border: 1px solid #f2cb05;
-    color: white;
+    background-color: var(--primary-bg-color);
+    border: var(--primary-border-color);
+    color: var(--primary-font-color);
     padding: 6px 10px;
     font-family: inherit;
     font-size: 14px;
@@ -229,11 +239,11 @@ body, html {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #3c3c3c;
+    background: var(--primary-bg-color);
     padding: 0.5rem;
     margin-bottom: 0.5rem;
     border-radius: 5px;
-    color: #fff;
+    color: var(--primary-font-color);
 }
 
 .project-list li button {
@@ -276,7 +286,7 @@ input {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #444;
+    background-color: var(--primary-bg-color);
     margin-bottom: 4px;
     padding: 6px 10px;
     border-radius: 6px;
@@ -310,18 +320,20 @@ input {
 }
 
 .start-box {
+    margin-left: 20%;
+    width: calc(100% - 20%);
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
-    border: 1px solid gold;
-    background-color: #2c2c2c;
+    border: var(--primary-border-color);
+    background-color: var(--primary-sectionbox-bg-color);
     padding: 20px;
     margin-bottom: 30px;
     border-radius: 8px;
     box-sizing: border-box;
-    width: 100%;
+    
     max-width: 800px;
-    text-align: left;
+    text-align: center;
     font-size: 20px;
 }
 
@@ -329,16 +341,16 @@ input {
     display: flex;
     justify-content: center;
     padding: 60px 20px;
-    color: white;
-    transform: translateX(-100px);
+    color: var(--primary-font-color);
+    
 }
 
 .impressum-content {
     text-align: center;
     max-width: 800px;
     line-height: 1.8;
-    background-color: #1d1d1d;
-    border: 2px solid gold;
+    background-color: var(--primary-sectionbox-bg-color);
+    border: var(--primary-border-color);
     padding: 40px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
