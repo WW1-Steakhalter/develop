@@ -27,9 +27,16 @@ function loadPage(url) {
                     });
                 });
             }
+            if (url === "HTML/settingsPage.html") {
+                if (typeof openMatrixPopup !== 'undefined') {
+                    // optional: initialer Code für Einstellungen
+                    console.log("Settings page geladen");
+                }
+            }
 
 
-        const currentTheme = document.documentElement.getAttribute('theme') || 'dark';
+
+            const currentTheme = document.documentElement.getAttribute('theme') || 'dark';
         if (typeof switchButtonImagesForTheme === 'function') {
             switchButtonImagesForTheme(currentTheme);
         }
@@ -48,7 +55,6 @@ function loadPage(url) {
         });
 }
 
-// ⬇️ HIER unterhalb von loadPage kommt loadEmployeeScript hin:
 function loadEmployeeScript() {
     return new Promise((resolve, reject) => {
         const script = document.createElement("script");

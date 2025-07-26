@@ -153,8 +153,60 @@ function createEmployeeCard(m) {
     }
 
     card.innerHTML = commonInfo + spezifisch + `</div>`;
+
+
+
     return card;
 }
+
+function openProjektModalDirekt(mitarbeiterObj) {
+    document.getElementById("projektModal").style.display = "flex";
+
+    fetch("/PHP/getProjectList.php")
+        .then(res => res.json())
+        .then(data => {
+            const list = document.getElementById("projektListe");
+            list.innerHTML = "";
+
+            data.forEach(projekt => {
+                const li = document.createElement("li");
+                li.textContent = projekt.projektname;
+                li.style.cursor = "pointer";
+
+                li.onclick = () => {
+                    const mitarbeiterId = mitarbeiterObj.mitarbeiter_id;
+                    const typ = (mitarbeiterObj.typ || "").toLowerCase() === "shk" ? "shk" : "fest";
+
+                    // Projekt-Zuweisung
+                    const formData = new FormData();
+                    formData.append("mitarbeiter_id", mitarbeiterId);
+                    formData.append("projekt_id", projekt.projekt_id);
+                    formData.append("typ", typ);
+
+                    fetch("/PHP/insertEmployeeIntoProject.php", {
+                        method: "POST",
+                        body: formData
+                    })
+                        .then(res => res.json())
+                        .then(response => {
+                            if (response.success) {
+                                alert("✅ Mitarbeiter wurde dem Projekt zugeordnet.");
+                                closeProjektModal();
+                            } else {
+                                alert("❌ Fehler: " + response.message);
+                            }
+                        })
+                        .catch(error => {
+                            console.error("Fehler bei Projektzuordnung:", error);
+                            alert("Netzwerkfehler beim Zuweisen.");
+                        });
+                };
+
+                list.appendChild(li);
+            });
+        });
+}
+
 
 function initScrollToTopButton() {
     const scrollBtn = document.getElementById("scrollTopBtn");
